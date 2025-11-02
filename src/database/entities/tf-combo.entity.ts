@@ -1,14 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, Index } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, Index } from 'typeorm';
 
 @Entity('tf_combos')
-@Index(['signalName', 'timeframe'], { unique: true })
-@Index(['timeframe', 'accuracy'])
-@Index(['comboSize', 'accuracy'])
+@Index(['signalName', 'timeframe'])
+@Index(['accuracy'])
 export class TfCombo {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'varchar', length: 500, name: 'signal_name' })
+  @Column({ type: 'text' })
   signalName: string;
 
   @Column({ type: 'varchar', length: 10 })
@@ -17,21 +16,18 @@ export class TfCombo {
   @Column({ type: 'decimal', precision: 5, scale: 2 })
   accuracy: number;
 
-  @Column({ type: 'int', name: 'signals_count' })
+  @Column({ type: 'int' })
   signalsCount: number;
 
-  @Column({ type: 'int', name: 'correct_predictions' })
-  correctPredictions: number;
-
-  @Column({ type: 'decimal', precision: 10, scale: 4, name: 'avg_price_change', nullable: true })
+  @Column({ type: 'decimal', precision: 10, scale: 4 })
   avgPriceChange: number;
 
-  @Column({ type: 'decimal', precision: 10, scale: 4, name: 'profit_factor', nullable: true })
+  @Column({ type: 'decimal', precision: 10, scale: 4 })
   profitFactor: number;
 
-  @Column({ type: 'int', name: 'combo_size' })
+  @Column({ type: 'int' })
   comboSize: number;
 
-  @CreateDateColumn({ name: 'created_at' })
-  createdAt: Date;
+  @Column({ type: 'int' })
+  correctPredictions: number;
 }

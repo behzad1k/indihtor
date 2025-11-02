@@ -1,9 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, Index } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, Index, Unique } from 'typeorm';
 
 @Entity('live_tf_combos')
 @Index(['symbol', 'timestamp'])
 @Index(['comboSignalName', 'timeframe'])
 @Index(['accuracy'])
+@Unique(['symbol', 'comboSignalName', 'timeframe', 'timestamp'])
 export class LiveTfCombo {
   @PrimaryGeneratedColumn()
   id: number;
@@ -11,22 +12,22 @@ export class LiveTfCombo {
   @Column({ type: 'varchar', length: 20 })
   symbol: string;
 
-  @Column({ type: 'varchar', length: 500, name: 'combo_signal_name' })
+  @Column({ type: 'text' })
   comboSignalName: string;
 
-  @Column({ type: 'text', name: 'signal_accuracies' })
+  @Column({ type: 'text' })
   signalAccuracies: string;
 
-  @Column({ type: 'text', name: 'signal_samples' })
+  @Column({ type: 'text' })
   signalSamples: string;
 
-  @Column({ type: 'decimal', precision: 10, scale: 4, name: 'combo_price_change' })
+  @Column({ type: 'decimal', precision: 20, scale: 8 })
   comboPriceChange: number;
 
-  @Column({ type: 'int', name: 'min_window' })
+  @Column({ type: 'int' })
   minWindow: number;
 
-  @Column({ type: 'int', name: 'max_window' })
+  @Column({ type: 'int' })
   maxWindow: number;
 
   @Column({ type: 'varchar', length: 10 })
@@ -35,6 +36,9 @@ export class LiveTfCombo {
   @Column({ type: 'decimal', precision: 5, scale: 2 })
   accuracy: number;
 
-  @CreateDateColumn()
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   timestamp: Date;
+
+  @CreateDateColumn()
+  createdAt: Date;
 }
