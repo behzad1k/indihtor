@@ -1,22 +1,15 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ScheduleModule } from '@nestjs/schedule';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { typeOrmConfig } from './config/typeorm.config';
-
-// Import all modules
+import { APP_GUARD } from '@nestjs/core';
 import { AuthModule } from './modules/auth/auth.module';
-import { PatternSignalsModule } from './modules/pattern-signals/pattern-signals.module';
-import { PriorityCoinsModule } from './modules/priority-coins/priority-coins.module';
-import { MonitorModule } from './modules/monitor/monitor.module';
-import { LiveAnalysisModule } from './modules/live-analysis/live-analysis.module';
-import { FactCheckerModule } from './modules/fact-checker/fact-checker.module';
-import { SignalValidationModule } from './modules/signal-validation/signal-validation.module';
-import { SignalCombinationsModule } from './modules/signal-combinations/signal-combinations.module';
-import { PaperTradingModule } from './modules/paper-trading/paper-trading.module';
+import { UsersModule } from './modules/users/users.module';
+import { TradingModule } from './modules/trading/trading.module';
+import { MarketDataModule } from './modules/market-data/market-data.module';
+import { SignalAnalyzerModule } from './modules/signal-analyzer/signal-analyzer.module';
 import { ExternalApiModule } from './modules/external-api/external-api.module';
+import { JwtAuthGuard } from './modules/auth/guards/jwt-auth.guard';
 
 @Module({
   imports: [
@@ -24,20 +17,30 @@ import { ExternalApiModule } from './modules/external-api/external-api.module';
       isGlobal: true,
       envFilePath: '.env',
     }),
-    TypeOrmModule.forRoot(typeOrmConfig),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        type: 'sqlite',
+        database: configService.get('DB_PATH', 'crypto_signals.db'),
+        entities: [__dirname + '/**/*.entity{.ts,.js}'],
+        synchronize: true, // Set to false in production
+        logging: false,
+      }),
+      inject: [ConfigService],
+    }),
     ScheduleModule.forRoot(),
     AuthModule,
-    PatternSignalsModule,
-    PriorityCoinsModule,
-    MonitorModule,
-    LiveAnalysisModule,
-    FactCheckerModule,
-    SignalValidationModule,
-    SignalCombinationsModule,
-    PaperTradingModule,
+    UsersModule,
+    TradingModule,
+    MarketDataModule,
+    SignalAnalyzerModule,
     ExternalApiModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+  ],
 })
 export class AppModule {}

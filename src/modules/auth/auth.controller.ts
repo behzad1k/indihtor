@@ -1,24 +1,19 @@
-import { Controller, Post, Get, Body, Session, Redirect } from '@nestjs/common';
+import { AuthDto, RegisterDto } from '@modules/auth/dto/auth.dto';
+import { Controller, Post, Body, HttpCode, HttpStatus } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { LoginDto } from './dto/login.dto';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private authService: AuthService) {}
 
-  @Post('login')
-  async login(@Body() loginDto: LoginDto, @Session() session: Record<string, any>) {
-    const result = await this.authService.validateUser(loginDto.username, loginDto.password);
-    if (result.success) {
-      session.logged_in = true;
-    }
-    return result;
+  @Post('register')
+  async register(@Body() registerDto: RegisterDto) {
+    return this.authService.register(registerDto);
   }
 
-  @Get('logout')
-  @Redirect('/login')
-  logout(@Session() session: Record<string, any>) {
-    session.logged_in = false;
-    return { url: '/login' };
+  @Post('login')
+  @HttpCode(HttpStatus.OK)
+  async login(@Body() loginDto: AuthDto) {
+    return this.authService.login(loginDto);
   }
 }

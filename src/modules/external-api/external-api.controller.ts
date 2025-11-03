@@ -9,7 +9,7 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { ExchangeAggregatorService } from './services/exchange-aggregator.service';
-import { ExchangeType, FetchDataOptions } from './types/exchange.types';
+import { ExchangeType, FetchDataOptions } from '@/types/exchange.types';
 
 @Controller('external-api')
 export class ExternalApiController {

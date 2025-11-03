@@ -17,7 +17,10 @@ export interface EnrichedOHLCVData extends OHLCVData {
   SMA_200?: number;
   EMA_5?: number;
   EMA_10?: number;
+  EMA_12?: number;
+  EMA_13?: number;
   EMA_20?: number;
+  EMA_26?: number;
   EMA_50?: number;
   EMA_100?: number;
   EMA_200?: number;
@@ -36,19 +39,18 @@ export interface EnrichedOHLCVData extends OHLCVData {
 
   // Bollinger Bands
   BB_middle?: number;
-  BB_std?: number;
   BB_upper?: number;
   BB_lower?: number;
+  BB_std?: number;
   BB_width?: number;
 
   // ATR
   ATR?: number;
 
-  // OBV
+  // Volume
   OBV?: number;
-
-  // VWAP
   VWAP?: number;
+  volume_sma?: number;
 
   // ADX
   ADX?: number;
@@ -82,7 +84,7 @@ export interface EnrichedOHLCVData extends OHLCVData {
   TSI?: number;
   TSI_signal?: number;
 
-  // Donchian Channel
+  // Donchian
   DONCHIAN_HIGH?: number;
   DONCHIAN_LOW?: number;
   DONCHIAN_MID?: number;
@@ -96,12 +98,9 @@ export interface EnrichedOHLCVData extends OHLCVData {
 }
 
 export interface SignalData {
-  signal: 'BUY' | 'SELL' | 'REVERSAL' | 'CONSOLIDATION' | 'BREAKOUT_PENDING' | 'BREAKOUT_LIKELY' | 'VOLATILE' | 'UNKNOWN';
+  signal: 'BUY' | 'SELL';
   strength?: 'WEAK' | 'MODERATE' | 'STRONG' | 'VERY_STRONG';
   value?: number;
-  multiplier?: number;
-  level?: number;
-  gap_size?: number;
 }
 
 export interface SignalMap {
@@ -122,18 +121,8 @@ export interface TimeframeError {
 }
 
 export interface CombinationData {
-  id: number;
-  symbol: string;
-  comboSignalName: string;
-  signalAccuracies: string;
-  signalSamples: string;
-  minWindow: number;
-  maxWindow: number;
-  timeframe: string;
+  comboName: string;
   accuracy: number;
-  comboPriceChange: number;
-  profitFactor?: number;
-  comboSize?: number;
-  signalsCount?: number;
-  timestamp: string;
+  sampleCount: number;
+  signals: string[];
 }

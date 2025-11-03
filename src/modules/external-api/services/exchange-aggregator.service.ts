@@ -8,7 +8,7 @@ import {
   FetchDataOptions,
   CurrentPriceResponse,
   ExchangeType,
-} from '../types/exchange.types';
+} from '@/types/exchange.types';
 
 @Injectable()
 export class ExchangeAggregatorService {

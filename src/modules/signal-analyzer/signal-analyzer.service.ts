@@ -1,9 +1,9 @@
+import { AnalysisRun } from '@database/entities/analysis-run.entity';
+import { LiveSignal } from '@database/entities/live-signal.entity';
+import { LiveTfCombo } from '@database/entities/live-tf-combo.entity';
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { LiveSignal } from './entities/live-signal.entity';
-import { LiveTfCombo } from './entities/live-tf-combo.entity';
-import { AnalysisRun } from './entities/analysis-run.entity';
 import { DataFetcherService } from './services/data-fetcher.service';
 import { IndicatorService } from './services/indicator.service';
 import { CandlestickAnalyzerService } from './services/candlestick-analyzer.service';
@@ -128,7 +128,7 @@ export class SignalAnalyzerService {
 
       // Save each signal
       for (const [signalName, signalData] of Object.entries(data.signals)) {
-        const signalInfo = SignalConfidence[signalName] || {};
+        const signalInfo: any = SignalConfidence[signalName] || {};
         const confidence = signalInfo.confidence || 0;
 
         const liveSignal = this.liveSignalRepository.create({

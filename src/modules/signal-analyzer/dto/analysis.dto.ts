@@ -1,5 +1,5 @@
 import { IsString, IsArray, IsOptional, IsNumber } from 'class-validator';
-import { TimeframeAnalysis, TimeframeError, CombinationData } from '../types/analysis.types';
+import { TimeframeAnalysis, TimeframeError, CombinationData } from '@/types/analysis.types';
 
 export class AnalyzeSymbolDto {
   @IsString()

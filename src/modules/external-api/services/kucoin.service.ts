@@ -9,7 +9,7 @@ import {
   CurrentPriceResponse,
   ExchangeType,
   TIMEFRAME_MAPPING,
-} from '../types/exchange.types';
+} from '@/types/exchange.types';
 
 @Injectable()
 export class KuCoinService {
