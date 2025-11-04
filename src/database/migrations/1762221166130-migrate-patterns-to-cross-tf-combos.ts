@@ -3,7 +3,7 @@ import { MigrationInterface, QueryRunner } from 'typeorm';
 import * as fs from 'fs';
 import * as path from 'path';
 
-export class MigratePatternsToCrossTfCombos1234567890 implements MigrationInterface {
+export class MigratePatternsToCrossTfCombos1762221166130 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     const patternsPath = path.join(process.cwd(), 'patterns.json');
 

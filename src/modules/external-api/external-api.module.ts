@@ -6,6 +6,11 @@ import { KuCoinService } from './services/kucoin.service';
 import { BinanceService } from './services/binance.service';
 import { TabdealService } from './services/tabdeal.service';
 import { NobitexService } from './services/nobitex.service';
+import { CoinbaseService } from './services/coinbase.service';
+import { KrakenService } from './services/kraken.service';
+import { BybitService } from './services/bybit.service';
+import { OKXService } from './services/okx.service';
+import { GateService } from './services/gate.service';
 import { ExchangeAggregatorService } from './services/exchange-aggregator.service';
 
 @Module({
@@ -18,10 +23,19 @@ import { ExchangeAggregatorService } from './services/exchange-aggregator.servic
   ],
   controllers: [ExternalApiController],
   providers: [
+    // Original exchanges
     KuCoinService,
     BinanceService,
     TabdealService,
     NobitexService,
+
+    // New exchanges for high-volume fact-checking
+    CoinbaseService,
+    KrakenService,
+    BybitService,
+    OKXService,
+    GateService,
+
     ExchangeAggregatorService,
   ],
   exports: [
@@ -29,6 +43,11 @@ import { ExchangeAggregatorService } from './services/exchange-aggregator.servic
     BinanceService,
     TabdealService,
     NobitexService,
+    CoinbaseService,
+    KrakenService,
+    BybitService,
+    OKXService,
+    GateService,
     ExchangeAggregatorService,
   ],
 })

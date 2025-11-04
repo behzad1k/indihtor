@@ -6,7 +6,11 @@
  */
 
 import { Injectable, Logger } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { FilteringStats, SignalFilterDecision, SignalFilterResult } from '@/types/fact-checking.types';
+import { TfCombo } from '@database/entities/tf-combo.entity';
+import { SignalFactCheck } from '@database/entities/signal-fact-check.entity';
 
 @Injectable()
 export class SignalFilterService {
@@ -15,8 +19,12 @@ export class SignalFilterService {
   private readonly MIN_ACCURACY_THRESHOLD = 60.0;
   private readonly WEAK_SIGNAL_SAMPLE_RATE = 0.3; // Check 30% of weak signals
 
-  constructor(private readonly databaseService: DatabaseService) {
-  }
+  constructor(
+    @InjectRepository(TfCombo)
+    private tfComboRepository: Repository<TfCombo>,
+    @InjectRepository(SignalFactCheck)
+    private signalFactCheckRepository: Repository<SignalFactCheck>,
+  ) {}
 
   /**
    * Filter signals and determine which should be fact-checked
@@ -60,7 +68,7 @@ export class SignalFilterService {
    * Determine if a signal should be fact-checked
    */
   private async shouldFactCheck(signal: any): Promise<SignalFilterDecision> {
-    const signalName = signal.signal_name;
+    const signalName = signal.signalName || signal.signal_name;
     const strength = signal.strength || 'WEAK';
     const confidence = signal.confidence || 0;
     const timeframe = signal.timeframe;
@@ -129,15 +137,14 @@ export class SignalFilterService {
     signalName: string,
     timeframe: string,
   ): Promise<boolean> {
-    const result = await this.databaseService.queryOne(
-      `SELECT COUNT(*) as count FROM tf_combos
-       WHERE signal_name LIKE ? 
-       AND timeframe = ?
-       AND accuracy >= ?`,
-      [`%${signalName}%`, timeframe, this.MIN_ACCURACY_THRESHOLD]
-    );
+    const count = await this.tfComboRepository
+    .createQueryBuilder('combo')
+    .where('combo.signalName LIKE :signalName', { signalName: `%${signalName}%` })
+    .andWhere('combo.timeframe = :timeframe', { timeframe })
+    .andWhere('combo.accuracy >= :minAccuracy', { minAccuracy: this.MIN_ACCURACY_THRESHOLD })
+    .getCount();
 
-    return result && result.count > 0;
+    return count > 0;
   }
 
   /**
@@ -147,13 +154,13 @@ export class SignalFilterService {
     signalName: string,
     timeframe: string,
   ): Promise<number> {
-    const result = await this.databaseService.queryOne(
-      `SELECT COUNT(*) as count FROM signal_fact_checks
-       WHERE signal_name = ? AND timeframe = ?`,
-      [signalName, timeframe]
-    );
+    const count = await this.signalFactCheckRepository
+    .createQueryBuilder('sfc')
+    .where('sfc.signalName = :signalName', { signalName })
+    .andWhere('sfc.timeframe = :timeframe', { timeframe })
+    .getCount();
 
-    return result ? result.count : 0;
+    return count;
   }
 
   /**

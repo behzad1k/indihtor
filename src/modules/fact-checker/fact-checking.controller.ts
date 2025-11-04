@@ -15,7 +15,7 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
-import { FactCheckingService } from './fact-checking.service';
+import { FactCheckingService } from './services/fact-checking.service';
 import {
   BulkFactCheckDto,
   FactCheckSingleDto,

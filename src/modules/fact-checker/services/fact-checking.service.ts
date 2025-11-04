@@ -9,7 +9,13 @@ import { PriceDataService } from '@modules/fact-checker/services/price-data.serv
 import { RateLimiterService } from '@modules/fact-checker/services/rate-limiter.service';
 import { SignalFilterService } from '@modules/fact-checker/services/signal-filter.service';
 import { Injectable, Logger } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { BulkFactCheckOptions, BulkFactCheckResults, ConfidenceAdjustment, FactCheckResult, SignalAccuracy, ValidationResult } from '@/types/fact-checking.types';
+import { LiveSignal } from '@database/entities/live-signal.entity';
+import { Signal } from '@database/entities/signal.entity';
+import { SignalFactCheck } from '@database/entities/signal-fact-check.entity';
+import { SignalConfidenceAdjustment } from '@database/entities/signal-confidence-adjustment.entity';
 
 @Injectable()
 export class FactCheckingService {
@@ -39,10 +45,17 @@ export class FactCheckingService {
   private validationWindowCache: Map<string, number> = new Map();
 
   constructor(
+    @InjectRepository(LiveSignal)
+    private liveSignalRepository: Repository<LiveSignal>,
+    @InjectRepository(Signal)
+    private signalRepository: Repository<Signal>,
+    @InjectRepository(SignalFactCheck)
+    private signalFactCheckRepository: Repository<SignalFactCheck>,
+    @InjectRepository(SignalConfidenceAdjustment)
+    private signalConfidenceAdjustmentRepository: Repository<SignalConfidenceAdjustment>,
     private readonly priceDataService: PriceDataService,
     private readonly rateLimiterService: RateLimiterService,
     private readonly signalFilterService: SignalFilterService,
-    private readonly databaseService: DatabaseService,
   ) {
     this.loadValidationWindows();
   }
@@ -52,13 +65,13 @@ export class FactCheckingService {
    */
   private async loadValidationWindows(): Promise<void> {
     try {
-      const windows = await this.databaseService.query(
-        'SELECT signal_name, timeframe, validation_window FROM signals'
-      );
+      const signals = await this.signalRepository.find({
+        select: ['signalName', 'timeframe', 'validationWindow'],
+      });
 
-      for (const row of windows) {
-        const key = `${row.signal_name}:${row.timeframe}`;
-        this.validationWindowCache.set(key, row.validation_window);
+      for (const signal of signals) {
+        const key = `${signal.signalName}:${signal.timeframe}`;
+        this.validationWindowCache.set(key, signal.validationWindow);
       }
 
       this.logger.log(
@@ -257,31 +270,27 @@ export class FactCheckingService {
 
     this.logger.log('🚀 Starting bulk fact-checking...');
 
-    // Get unchecked signals
-    let query = `
-      SELECT ls.* 
-      FROM live_signals ls
-      LEFT JOIN signal_fact_checks sfc 
-        ON ls.signal_name = sfc.signal_name 
-        AND ls.timeframe = sfc.timeframe 
-        AND ls.timestamp = sfc.detected_at
-      WHERE sfc.id IS NULL
-    `;
+    // Get unchecked signals using TypeORM query builder
+    let queryBuilder = this.liveSignalRepository
+    .createQueryBuilder('ls')
+    .leftJoin(
+      SignalFactCheck,
+      'sfc',
+      'ls.signalName = sfc.signalName AND ls.timeframe = sfc.timeframe AND ls.timestamp = sfc.detectedAt'
+    )
+    .where('sfc.id IS NULL');
 
-    const params: any[] = [];
     if (symbol) {
-      query += ' AND ls.symbol = ?';
-      params.push(symbol);
+      queryBuilder = queryBuilder.andWhere('ls.symbol = :symbol', { symbol });
     }
 
-    query += ' ORDER BY ls.timestamp DESC';
+    queryBuilder = queryBuilder.orderBy('ls.timestamp', 'DESC');
 
     if (limit) {
-      query += ` LIMIT ${limit}`;
+      queryBuilder = queryBuilder.limit(limit);
     }
 
-    const signals = await this.databaseService.query(query, params);
-
+    const signals = await queryBuilder.getMany();
     const totalSignals = signals.length;
     this.logger.log(`Found ${totalSignals} signals to check`);
 
@@ -335,11 +344,11 @@ export class FactCheckingService {
 
       const batchResults = await Promise.allSettled(
         batch.map(signal => this.factCheckSignal(
-          signal.signal_name,
-          signal.signal_type,
+          signal.signalName,
+          signal.signalType as 'BUY' | 'SELL',
           signal.timeframe,
           new Date(signal.timestamp),
-          signal.price,
+          Number(signal.price),
           signal.symbol,
         ))
       );
@@ -418,26 +427,21 @@ export class FactCheckingService {
    * Save fact-check result to database
    */
   private async saveFactCheck(result: FactCheckResult): Promise<void> {
-    await this.databaseService.execute(
-      `INSERT INTO signal_fact_checks (
-        signal_name, timeframe, detected_at, price_at_detection,
-        actual_move, predicted_correctly, price_change_pct,
-        checked_at, candles_elapsed, exit_reason, validation_window
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [
-        result.signalName,
-        result.timeframe,
-        result.detectedAt,
-        result.priceAtDetection,
-        result.actualMove,
-        result.predictedCorrectly,
-        result.priceChangePct,
-        result.checkedAt,
-        result.candlesElapsed,
-        result.exitReason,
-        result.validationWindow,
-      ]
-    );
+    const factCheck = this.signalFactCheckRepository.create({
+      signalName: result.signalName,
+      timeframe: result.timeframe,
+      detectedAt: result.detectedAt,
+      priceAtDetection: result.priceAtDetection,
+      actualMove: result.actualMove,
+      predictedCorrectly: result.predictedCorrectly,
+      priceChangePct: result.priceChangePct,
+      checkedAt: result.checkedAt,
+      candlesElapsed: result.candlesElapsed,
+      exitReason: result.exitReason,
+      validationWindow: result.validationWindow,
+    });
+
+    await this.signalFactCheckRepository.save(factCheck);
   }
 
   /**
@@ -463,28 +467,27 @@ export class FactCheckingService {
     for (const [key, stats] of signalStats) {
       const [signalName, timeframe] = key.split(':');
 
-      // Get complete stats from database
-      const dbStats = await this.databaseService.queryOne(
-        `SELECT 
-          COUNT(*) as total,
-          SUM(CASE WHEN predicted_correctly = 1 THEN 1 ELSE 0 END) as correct,
-          AVG(price_change_pct) as avg_change
-        FROM signal_fact_checks
-        WHERE signal_name = ? AND timeframe = ?`,
-        [signalName, timeframe]
-      );
+      // Get complete stats from database using TypeORM
+      const factChecks = await this.signalFactCheckRepository.find({
+        where: {
+          signalName,
+          timeframe,
+        },
+      });
 
-      if (dbStats && dbStats.total > 0) {
-        const accuracy = (dbStats.correct / dbStats.total) * 100;
+      if (factChecks.length > 0) {
+        const total = factChecks.length;
+        const correct = factChecks.filter(fc => fc.predictedCorrectly).length;
+        const accuracy = (correct / total) * 100;
 
         // Update signals table
-        await this.databaseService.execute(
-          `UPDATE signals
-          SET signal_accuracy = ?,
-              sample_size = ?,
-              updated_at = ?
-          WHERE signal_name = ? AND timeframe = ?`,
-          [accuracy, dbStats.total, new Date(), signalName, timeframe]
+        await this.signalRepository.update(
+          { signalName, timeframe },
+          {
+            signalAccuracy: accuracy,
+            sampleSize: total,
+            updatedAt: new Date(),
+          }
         );
       }
     }
@@ -500,48 +503,52 @@ export class FactCheckingService {
     timeframe?: string,
     minSamples: number = 10,
   ): Promise<SignalAccuracy | null> {
-    let query = `
-      SELECT 
-        COUNT(*) as total,
-        SUM(CASE WHEN predicted_correctly = 1 THEN 1 ELSE 0 END) as correct,
-        AVG(price_change_pct) as avg_price_change,
-        AVG(CASE WHEN predicted_correctly = 1 THEN price_change_pct ELSE 0 END) as avg_win,
-        AVG(CASE WHEN predicted_correctly = 0 THEN price_change_pct ELSE 0 END) as avg_loss,
-        SUM(CASE WHEN exit_reason LIKE '%STOPPED_OUT%' THEN 1 ELSE 0 END) as stopped_out
-      FROM signal_fact_checks
-      WHERE signal_name = ?
-    `;
-
-    const params: any[] = [signalName];
+    const queryBuilder = this.signalFactCheckRepository
+    .createQueryBuilder('sfc')
+    .where('sfc.signalName = :signalName', { signalName });
 
     if (timeframe) {
-      query += ' AND timeframe = ?';
-      params.push(timeframe);
+      queryBuilder.andWhere('sfc.timeframe = :timeframe', { timeframe });
     }
 
-    const result = await this.databaseService.queryOne(query, params);
+    const factChecks = await queryBuilder.getMany();
 
-    if (!result || result.total < minSamples) {
+    if (!factChecks || factChecks.length < minSamples) {
       return null;
     }
 
-    const accuracy = (result.correct / result.total) * 100;
-    const profitFactor = result.avg_loss !== 0
-      ? Math.abs(result.avg_win / result.avg_loss)
+    const total = factChecks.length;
+    const correct = factChecks.filter(fc => fc.predictedCorrectly).length;
+    const accuracy = (correct / total) * 100;
+
+    const avgPriceChange = factChecks.reduce((sum, fc) => sum + Number(fc.priceChangePct), 0) / total;
+
+    const winningChecks = factChecks.filter(fc => fc.predictedCorrectly);
+    const losingChecks = factChecks.filter(fc => !fc.predictedCorrectly);
+
+    const avgWin = winningChecks.length > 0
+      ? winningChecks.reduce((sum, fc) => sum + Number(fc.priceChangePct), 0) / winningChecks.length
       : 0;
+
+    const avgLoss = losingChecks.length > 0
+      ? losingChecks.reduce((sum, fc) => sum + Number(fc.priceChangePct), 0) / losingChecks.length
+      : 0;
+
+    const stoppedOut = factChecks.filter(fc => fc.exitReason.includes('STOPPED_OUT')).length;
+    const profitFactor = avgLoss !== 0 ? Math.abs(avgWin / avgLoss) : 0;
 
     return {
       signalName,
       timeframe,
-      totalSamples: result.total,
-      correctPredictions: result.correct,
+      totalSamples: total,
+      correctPredictions: correct,
       accuracy,
-      avgPriceChange: result.avg_price_change || 0,
-      avgWin: result.avg_win || 0,
-      avgLoss: result.avg_loss || 0,
+      avgPriceChange,
+      avgWin,
+      avgLoss,
       profitFactor,
-      stoppedOut: result.stopped_out || 0,
-      stoppedOutRate: (result.stopped_out / result.total * 100) || 0,
+      stoppedOut,
+      stoppedOutRate: (stoppedOut / total * 100) || 0,
     };
   }
 
@@ -590,26 +597,18 @@ export class FactCheckingService {
       Math.round(baseAdjusted + profitBonus - stopPenalty)
     ));
 
-    // Save to database
-    await this.databaseService.execute(
-      `INSERT OR REPLACE INTO signal_confidence_adjustments (
-        signal_name, timeframe, original_confidence, adjusted_confidence,
-        accuracy_rate, sample_size, profit_factor, stopped_out_rate,
-        sample_weight, last_updated
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [
-        signalName,
-        timeframe,
-        originalConf,
-        adjustedConf,
-        accuracyData.accuracy,
-        accuracyData.totalSamples,
-        accuracyData.profitFactor,
-        accuracyData.stoppedOutRate,
-        sampleWeight,
-        new Date(),
-      ]
-    );
+    // Save to database using upsert
+    const adjustment = this.signalConfidenceAdjustmentRepository.create({
+      signalName,
+      timeframe,
+      originalConfidence: originalConf,
+      adjustedConfidence: adjustedConf,
+      accuracyRate: accuracyData.accuracy,
+      sampleSize: accuracyData.totalSamples,
+      lastUpdated: new Date(),
+    });
+
+    await this.signalConfidenceAdjustmentRepository.save(adjustment);
 
     this.logger.log(
       `✅ Adjusted ${signalName}[${timeframe}]: ${originalConf}→${adjustedConf}`
@@ -636,9 +635,12 @@ export class FactCheckingService {
     skippedInsufficientSamples: number;
     adjustments: ConfidenceAdjustment[];
   }> {
-    const combinations = await this.databaseService.query(
-      'SELECT DISTINCT signal_name, timeframe FROM signal_fact_checks'
-    );
+    // Get distinct signal-timeframe combinations
+    const combinations = await this.signalFactCheckRepository
+    .createQueryBuilder('sfc')
+    .select('DISTINCT sfc.signalName', 'signalName')
+    .addSelect('sfc.timeframe', 'timeframe')
+    .getRawMany();
 
     const results = {
       totalProcessed: 0,
@@ -647,11 +649,11 @@ export class FactCheckingService {
       adjustments: [],
     };
 
-    for (const { signal_name, timeframe } of combinations) {
+    for (const { signalName, timeframe } of combinations) {
       results.totalProcessed++;
 
       const adjustment = await this.adjustSignalConfidence(
-        signal_name,
+        signalName,
         timeframe,
         minSamples,
       );
@@ -678,23 +680,36 @@ export class FactCheckingService {
     signalName: string,
     timeframe: string,
   ): Promise<number> {
-    const result = await this.databaseService.queryOne(
-      `SELECT adjusted_confidence FROM signal_confidence_adjustments
-       WHERE signal_name = ? AND timeframe = ?`,
-      [signalName, timeframe]
-    );
+    const adjustment = await this.signalConfidenceAdjustmentRepository.findOne({
+      where: {
+        signalName,
+        timeframe,
+      },
+    });
 
-    return result ? result.adjusted_confidence : 70; // Default
+    return adjustment ? adjustment.adjustedConfidence : 70; // Default
   }
 
   /**
    * Get all confidence adjustments
    */
   async getAllAdjustments(): Promise<ConfidenceAdjustment[]> {
-    return this.databaseService.query(
-      `SELECT * FROM signal_confidence_adjustments
-       ORDER BY last_updated DESC`
-    );
+    const adjustments = await this.signalConfidenceAdjustmentRepository.find({
+      order: {
+        lastUpdated: 'DESC',
+      },
+    });
+
+    return adjustments.map(adj => ({
+      signalName: adj.signalName,
+      timeframe: adj.timeframe,
+      originalConfidence: adj.originalConfidence,
+      adjustedConfidence: adj.adjustedConfidence,
+      accuracyRate: adj.accuracyRate,
+      sampleSize: adj.sampleSize,
+      profitFactor: 0, // Not stored in adjustment table
+      confidenceChange: adj.adjustedConfidence - adj.originalConfidence,
+    }));
   }
 
   /**
@@ -702,58 +717,54 @@ export class FactCheckingService {
    */
   async generateValidationReport(): Promise<any> {
     // Overall statistics
-    const overall = await this.databaseService.queryOne(`
-      SELECT 
-        COUNT(*) as total_checks,
-        SUM(CASE WHEN predicted_correctly = 1 THEN 1 ELSE 0 END) as correct,
-        AVG(price_change_pct) as avg_change,
-        SUM(CASE WHEN exit_reason LIKE '%STOPPED_OUT%' THEN 1 ELSE 0 END) as stopped_out
-      FROM signal_fact_checks
-    `);
+    const allChecks = await this.signalFactCheckRepository.find();
+
+    const totalChecks = allChecks.length;
+    const correct = allChecks.filter(fc => fc.predictedCorrectly).length;
+    const avgChange = allChecks.reduce((sum, fc) => sum + Number(fc.priceChangePct), 0) / totalChecks;
+    const stoppedOut = allChecks.filter(fc => fc.exitReason.includes('STOPPED_OUT')).length;
 
     // Exit reasons distribution
-    const exitReasons = await this.databaseService.query(`
-      SELECT exit_reason, COUNT(*) as count
-      FROM signal_fact_checks
-      GROUP BY exit_reason
-      ORDER BY count DESC
-    `);
+    const exitReasonsMap = new Map<string, number>();
+    allChecks.forEach(fc => {
+      exitReasonsMap.set(fc.exitReason, (exitReasonsMap.get(fc.exitReason) || 0) + 1);
+    });
 
-    // Top performing signals
-    const topSignals = await this.databaseService.query(`
-      SELECT 
-        signal_name, timeframe, COUNT(*) as samples,
-        ROUND(AVG(CASE WHEN predicted_correctly = 1 THEN 100.0 ELSE 0.0 END), 2) as accuracy,
-        ROUND(AVG(price_change_pct), 3) as avg_change
-      FROM signal_fact_checks
-      GROUP BY signal_name, timeframe
-      HAVING samples >= 20
-      ORDER BY accuracy DESC
-      LIMIT 10
-    `);
+    const exitReasons = {};
+    exitReasonsMap.forEach((count, reason) => {
+      exitReasons[reason] = count;
+    });
+
+    // Top performing signals (with at least 20 samples)
+    const signalTimeframes = await this.signalFactCheckRepository
+    .createQueryBuilder('sfc')
+    .select('sfc.signalName', 'signalName')
+    .addSelect('sfc.timeframe', 'timeframe')
+    .addSelect('COUNT(*)', 'samples')
+    .addSelect('AVG(CASE WHEN sfc.predictedCorrectly = true THEN 100.0 ELSE 0.0 END)', 'accuracy')
+    .addSelect('AVG(sfc.priceChangePct)', 'avgChange')
+    .groupBy('sfc.signalName')
+    .addGroupBy('sfc.timeframe')
+    .having('COUNT(*) >= 20')
+    .orderBy('accuracy', 'DESC')
+    .limit(10)
+    .getRawMany();
 
     return {
       overall: {
-        totalChecks: overall.total_checks,
-        correct: overall.correct,
-        accuracy: overall.total_checks > 0
-          ? (overall.correct / overall.total_checks * 100)
-          : 0,
-        avgChange: overall.avg_change || 0,
-        stoppedOut: overall.stopped_out,
-        stoppedOutRate: overall.total_checks > 0
-          ? (overall.stopped_out / overall.total_checks * 100)
-          : 0,
+        totalChecks,
+        correct,
+        accuracy: totalChecks > 0 ? (correct / totalChecks * 100) : 0,
+        avgChange: avgChange || 0,
+        stoppedOut,
+        stoppedOutRate: totalChecks > 0 ? (stoppedOut / totalChecks * 100) : 0,
       },
-      exitReasons: exitReasons.reduce((acc, row) => {
-        acc[row.exit_reason] = row.count;
-        return acc;
-      }, {}),
-      topSignals: topSignals.map(signal => ({
-        signal: `${signal.signal_name}[${signal.timeframe}]`,
-        samples: signal.samples,
-        accuracy: signal.accuracy,
-        avgChange: signal.avg_change,
+      exitReasons,
+      topSignals: signalTimeframes.map(signal => ({
+        signal: `${signal.signalName}[${signal.timeframe}]`,
+        samples: parseInt(signal.samples),
+        accuracy: parseFloat(signal.accuracy).toFixed(2),
+        avgChange: parseFloat(signal.avgChange).toFixed(3),
       })),
     };
   }

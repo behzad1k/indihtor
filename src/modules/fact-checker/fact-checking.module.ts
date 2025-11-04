@@ -6,11 +6,11 @@ import { PriceDataService } from './services/price-data.service';
 import { RateLimiterService } from './services/rate-limiter.service';
 import { SignalFilterService } from './services/signal-filter.service';
 import { ExternalApiModule } from '@modules/external-api/external-api.module';
-
-// Import your existing entities
 import { LiveSignal } from '@database/entities/live-signal.entity';
 import { Signal } from '@database/entities/signal.entity';
 import { TfCombo } from '@database/entities/tf-combo.entity';
+import { SignalFactCheck } from '@database/entities/signal-fact-check.entity';
+import { SignalConfidenceAdjustment } from '@database/entities/signal-confidence-adjustment.entity';
 
 @Module({
   imports: [
@@ -18,6 +18,8 @@ import { TfCombo } from '@database/entities/tf-combo.entity';
       LiveSignal,
       Signal,
       TfCombo,
+      SignalFactCheck,
+      SignalConfidenceAdjustment,
     ]),
     ExternalApiModule, // Import to use ExchangeAggregatorService
   ],
@@ -27,7 +29,6 @@ import { TfCombo } from '@database/entities/tf-combo.entity';
     PriceDataService,
     RateLimiterService,
     SignalFilterService,
-    DatabaseService,
   ],
   exports: [FactCheckingService],
 })

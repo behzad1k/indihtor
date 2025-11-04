@@ -1,4 +1,4 @@
-import { TradingConfig } from '@database/entities/trading-config.entity';
+import { TradingConfig } from './trading-config.entity';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn } from 'typeorm';
 
 @Entity('users')
@@ -11,6 +11,9 @@ export class User {
 
   @Column()
   password: string;
+
+  @Column({ type: 'varchar', length: 200, default: 'user'})
+  role: string;
 
   @Column({ default: true })
   isActive: boolean;
