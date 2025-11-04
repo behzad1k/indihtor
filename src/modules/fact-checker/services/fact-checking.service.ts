@@ -23,7 +23,7 @@ export class FactCheckingService {
 
   // Configuration constants
   private readonly MIN_PROFIT_THRESHOLD_PCT = 0.1; // 0.5% minimum profit
-  private readonly STOP_LOSS_PCT = 3.0;
+  private readonly STOP_LOSS_PCT = 5.0;
   private readonly MAX_WORKERS = 10;
 
   // Fallback validation windows (if not in database)
@@ -114,6 +114,29 @@ export class FactCheckingService {
       };
     }
 
+    const finalPrice = candles[candles.length - 1].close;
+
+    // =================================================================
+    // 🚨 CRITICAL: Sanity check for price unit mismatch
+    // =================================================================
+    const priceRatio = finalPrice / entryPrice;
+
+    // If prices differ by more than 10x, something is wrong
+    if (priceRatio > 10 || priceRatio < 0.1) {
+      this.logger.error(
+        `❌ PRICE UNIT MISMATCH DETECTED!\n` +
+        `   Entry Price: ${entryPrice}\n` +
+        `   Final Price: ${finalPrice}\n` +
+        `   Ratio: ${priceRatio.toFixed(2)}x\n` +
+        `   This suggests prices are in different units!`
+      );
+      return {
+        predictedCorrectly: false,
+        exitReason: 'PRICE_UNIT_MISMATCH',
+        priceChangePct: 0,
+      };
+    }
+
     const stopLoss = stopLossPct || this.STOP_LOSS_PCT;
 
     if (signalType === 'BUY') {
@@ -130,10 +153,28 @@ export class FactCheckingService {
         }
       }
 
-      // Check final profit
-      const finalPrice = candles[candles.length - 1].close;
+      // Calculate price change
       const priceChangePct = ((finalPrice - entryPrice) / entryPrice) * 100;
 
+      // =================================================================
+      // 🚨 CRITICAL: Validate percentage is reasonable
+      // =================================================================
+      if (Math.abs(priceChangePct) > 50) {
+        this.logger.error(
+          `❌ INVALID PRICE CHANGE DETECTED!\n` +
+          `   Percentage: ${priceChangePct.toFixed(2)}%\n` +
+          `   Entry: ${entryPrice}\n` +
+          `   Final: ${finalPrice}\n` +
+          `   This is unrealistic for crypto in a few candles!`
+        );
+        return {
+          predictedCorrectly: false,
+          exitReason: 'INVALID_PRICE_CHANGE',
+          priceChangePct: 0,
+        };
+      }
+
+      // Determine result
       if (priceChangePct > this.MIN_PROFIT_THRESHOLD_PCT) {
         return {
           predictedCorrectly: true,
@@ -167,27 +208,45 @@ export class FactCheckingService {
         }
       }
 
-      // Check final profit
-      const finalPrice = candles[candles.length - 1].close;
+      // Calculate price change (for SELL: profit when price goes down)
       const priceChangePct = ((entryPrice - finalPrice) / entryPrice) * 100;
 
+      // =================================================================
+      // 🚨 CRITICAL: Validate percentage is reasonable
+      // =================================================================
+      if (Math.abs(priceChangePct) > 50) {
+        this.logger.error(
+          `❌ INVALID PRICE CHANGE DETECTED!\n` +
+          `   Percentage: ${priceChangePct.toFixed(2)}%\n` +
+          `   Entry: ${entryPrice}\n` +
+          `   Final: ${finalPrice}\n` +
+          `   This is unrealistic for crypto in a few candles!`
+        );
+        return {
+          predictedCorrectly: false,
+          exitReason: 'INVALID_PRICE_CHANGE',
+          priceChangePct: 0,
+        };
+      }
+
+      // Determine result
       if (priceChangePct > this.MIN_PROFIT_THRESHOLD_PCT) {
         return {
           predictedCorrectly: true,
           exitReason: 'PROFIT_TARGET',
-          priceChangePct: -priceChangePct,
+          priceChangePct,
         };
       } else if (priceChangePct > 0) {
         return {
           predictedCorrectly: false,
           exitReason: 'PROFIT_TOO_SMALL',
-          priceChangePct: -priceChangePct,
+          priceChangePct,
         };
       } else {
         return {
           predictedCorrectly: false,
           exitReason: 'LOSS',
-          priceChangePct: -priceChangePct,
+          priceChangePct,
         };
       }
     }
@@ -198,6 +257,7 @@ export class FactCheckingService {
       priceChangePct: 0,
     };
   }
+
 
   /**
    * Fact-check a single signal
@@ -215,6 +275,15 @@ export class FactCheckingService {
     // Get validation window
     const validationWindow = candlesAhead || this.getValidationWindow(signalName, timeframe);
 
+  // 🔍 DEBUG: Log the fact-check attempt
+  this.logger.debug(
+    `Fact-checking: ${signalName} [${timeframe}] ${symbol}\n` +
+    `   Signal Type: ${signalType}\n` +
+    `   Price at Detection: ${priceAtDetection}\n` +
+    `   Detected At: ${detectedAt.toISOString()}\n` +
+    `   Validation Window: ${validationWindow} candles`
+  );
+
     // Fetch price journey
     const candles = await this.priceDataService.fetchPriceJourney(
       symbol,
@@ -224,8 +293,17 @@ export class FactCheckingService {
     );
 
     if (!candles || candles.length < 2) {
+    this.logger.warn(`Insufficient candles for ${symbol}`);
       return null;
     }
+
+  // 🔍 DEBUG: Log candle data
+  this.logger.debug(
+    `Candles fetched: ${candles.length}\n` +
+    `   First candle: open=${candles[0].open}, close=${candles[0].close}\n` +
+    `   Last candle: open=${candles[candles.length - 1].open}, close=${candles[candles.length - 1].close}\n` +
+    `   Price range: ${Math.min(...candles.map(c => c.low))} - ${Math.max(...candles.map(c => c.high))}`
+  );
 
     // Validate signal
     const validation = await this.validateSignalWithStopLoss(
@@ -234,6 +312,16 @@ export class FactCheckingService {
       candles,
       stopLossPct,
     );
+
+  // 🔍 DEBUG: Log validation result
+  this.logger.debug(
+    `Validation result:\n` +
+    `   Predicted Correctly: ${validation.predictedCorrectly}\n` +
+    `   Price Change: ${validation.priceChangePct.toFixed(4)}%\n` +
+    `   Exit Reason: ${validation.exitReason}`
+  );
+
+  // ... rest of the method stays the same
 
     // Determine actual move
     let actualMove: 'UP' | 'DOWN' | 'FLAT';
@@ -278,7 +366,7 @@ export class FactCheckingService {
       'sfc',
       'ls.signalName = sfc.signalName AND ls.timeframe = sfc.timeframe AND ls.timestamp = sfc.detectedAt'
     )
-    .where('sfc.id IS NULL');
+    .where('sfc.id IS NULL').orderBy('ls.timestamp', 'ASC');
 
     if (symbol) {
       queryBuilder = queryBuilder.andWhere('ls.symbol = :symbol', { symbol });

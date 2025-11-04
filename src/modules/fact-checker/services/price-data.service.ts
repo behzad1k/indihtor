@@ -64,7 +64,7 @@ export class PriceDataService {
         const cacheStats = this.candleCache.getStats();
 
         // Update our stats based on cache behavior
-        if (cacheStats.cacheHits > this.fetchStats.cacheHits) {
+        if ((cacheStats as any).cacheHits > this.fetchStats.cacheHits) {
           this.fetchStats.cacheHits++;
         } else if (cacheStats.derivations > this.fetchStats.derivations) {
           this.fetchStats.derivations++;

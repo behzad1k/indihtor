@@ -14,6 +14,8 @@ import {
   CurrentPriceResponse,
   ExchangeType,
 } from '@/types/exchange.types';
+import * as fs from 'fs/promises';
+import * as path from 'path';
 
 interface RateLimitInfo {
   requestsInLastMinute: number[];
@@ -37,16 +39,17 @@ interface FetchAttempt {
 @Injectable()
 export class ExchangeAggregatorService {
   private readonly logger = new Logger(ExchangeAggregatorService.name);
-
+  private readonly CACHE_DIR = './data';
+  private readonly CACHE_FILE = path.join(this.CACHE_DIR, 'symbol-availability-cache.json');
   // Priority order for exchanges (most reliable/fastest first)
   private readonly EXCHANGE_PRIORITY = [
     ExchangeType.BINANCE,
     ExchangeType.BYBIT,
     ExchangeType.OKX,
     ExchangeType.KUCOIN,
-    ExchangeType.COINBASE,
     ExchangeType.KRAKEN,
     ExchangeType.GATE,
+    // ExchangeType.COINBASE,
   ];
 
   // Rate limits per exchange (requests per minute)
@@ -105,12 +108,37 @@ export class ExchangeAggregatorService {
       this.stats.exchangeAttempts.set(exchange, 0);
       this.stats.exchangeSuccesses.set(exchange, 0);
     }
-
+    this.loadCacheFromDisk();
     // Clean up old requests every 10 seconds
     setInterval(() => this.cleanupRateLimits(), 10000);
 
     // Clean up old availability cache every hour
     setInterval(() => this.cleanupAvailabilityCache(), 3600000);
+  }
+
+  /**
+   * Load symbol availability cache from disk on startup
+   */
+  private async loadCacheFromDisk(): Promise<void> {
+    try {
+      const cacheData = await fs.readFile(this.CACHE_FILE, 'utf-8');
+      const parsed = JSON.parse(cacheData);
+
+      this.importAvailabilityCache(parsed);
+
+      this.logger.log(`✅ Loaded symbol availability cache with ${this.symbolAvailability.size} symbols`);
+
+      // Log sample statistics
+      const stats = this.getOptimizedStats();
+      this.logger.log(`   Cache contains ${stats.cache.cachedSymbols} symbols`);
+    } catch (error) {
+      if (error.code === 'ENOENT') {
+        this.logger.warn('⚠️  No symbol cache found. Run prewarm script for better performance.');
+        this.logger.warn('   Command: npx ts-node scripts/prewarm-symbol-cache.ts');
+      } else {
+        this.logger.error(`❌ Failed to load cache: ${error.message}`);
+      }
+    }
   }
 
   /**

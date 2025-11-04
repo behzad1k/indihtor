@@ -29,7 +29,7 @@ export class DataFetcherService {
 
       // Fallback to automatic exchange selection
       if (!data || data.length < 50) {
-        data = await this.exchangeAggregator.fetchCandlesWithFallback({
+        data = await this.exchangeAggregator.fetchCandlesWithCircularPriority({
           symbol,
           timeframe,
           limit,

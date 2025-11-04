@@ -183,23 +183,9 @@ export class KrakenService {
 
   /**
    * Format symbol pair for Kraken API
-   * Kraken uses special formatting like XXBTZUSD for BTC/USD
    */
   private formatSymbolPair(symbol: string): string {
-    const symbolMap: Record<string, string> = {
-      'BTC': 'XXBTZUSD',
-      'ETH': 'XETHZUSD',
-      'USDT': 'USDTZUSD',
-      'XRP': 'XXRPZUSD',
-      'ADA': 'ADAUSD',
-      'SOL': 'SOLUSD',
-      'DOT': 'DOTUSD',
-      'DOGE': 'XDGZUSD',
-      'MATIC': 'MATICUSD',
-      'LTC': 'XLTCZUSD',
-    };
-
     // Return mapped value or construct default
-    return symbolMap[symbol] || `${symbol}USD`;
+    return `${symbol}USDT`;
   }
 }

@@ -33,7 +33,7 @@ export class ExternalApiController {
       if (exchange) {
         data = await this.aggregatorService.fetchCandlesFromExchange(exchange, options);
       } else {
-        data = await this.aggregatorService.fetchCandlesWithFallback(options);
+        data = await this.aggregatorService.fetchCandlesWithCircularPriority(options);
       }
 
       if (!data) {

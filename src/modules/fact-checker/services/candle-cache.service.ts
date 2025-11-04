@@ -32,7 +32,7 @@ export class CandleCacheService {
   private readonly logger = new Logger(CandleCacheService.name);
 
   // Base timeframes to fetch from exchanges
-  private readonly BASE_TIMEFRAMES = ['1m', '15m', '2h'];
+  private readonly BASE_TIMEFRAMES = ['1m', '5m', '30m', '4h', '8h'];
 
   // Cache with 10-minute TTL
   private readonly CACHE_TTL = 600000; // 10 minutes
@@ -45,18 +45,19 @@ export class CandleCacheService {
   private readonly TIMEFRAME_DERIVATIONS: Record<string, TimeframeConfig> = {
     // From 1m base:
     '3m': { baseTimeframe: '1m', multiplier: 3 },
-    '5m': { baseTimeframe: '1m', multiplier: 5 },
 
-    // From 15m base:
-    '30m': { baseTimeframe: '15m', multiplier: 2 },
-    '1h': { baseTimeframe: '15m', multiplier: 4 },
+    // From 5m base:
+    '15m': { baseTimeframe: '5m', multiplier: 3 },
 
-    // From 2h base:
-    '4h': { baseTimeframe: '2h', multiplier: 2 },
-    '6h': { baseTimeframe: '2h', multiplier: 3 },
-    '8h': { baseTimeframe: '2h', multiplier: 4 },
-    '12h': { baseTimeframe: '2h', multiplier: 6 },
-    '1d': { baseTimeframe: '2h', multiplier: 12 },
+    // From 30m base:
+    '1h': { baseTimeframe: '30m', multiplier: 2 },
+    '2h': { baseTimeframe: '30m', multiplier: 4 },
+
+    // From 6h base:
+    '12h': { baseTimeframe: '4h', multiplier: 3 },
+
+    // From 8h base:
+    '1d': { baseTimeframe: '8h', multiplier: 3 },
   };
 
   // Statistics
@@ -80,14 +81,14 @@ export class CandleCacheService {
     fetchFn: (tf: string, lim: number) => Promise<OHLCVData[] | null>,
   ): Promise<OHLCVData[] | null> {
     // Check if derivable
-    if (this.TIMEFRAME_DERIVATIONS[timeframe]) {
-      return this.getDerivedCandles(symbol, timeframe, limit, fetchFn);
-    }
-
-    // Check if it's a base timeframe
-    if (this.BASE_TIMEFRAMES.includes(timeframe)) {
-      return this.getBaseCandles(symbol, timeframe, limit, fetchFn);
-    }
+    // if (this.TIMEFRAME_DERIVATIONS[timeframe]) {
+    //   return this.getDerivedCandles(symbol, timeframe, limit, fetchFn);
+    // }
+    //
+    // // Check if it's a base timeframe
+    // if (this.BASE_TIMEFRAMES.includes(timeframe)) {
+    //   return this.getBaseCandles(symbol, timeframe, limit, fetchFn);
+    // }
 
     // Fallback: fetch directly with deduplication
     return this.fetchWithDeduplication(symbol, timeframe, limit, fetchFn);
@@ -341,7 +342,6 @@ export class CandleCacheService {
     return {
       cacheSize: this.cache.size,
       inFlightRequests: this.inFlightRequests.size,
-      cacheHits: this.stats.cacheHits,
       cacheMisses: this.stats.cacheMisses,
       hitRate: `${hitRate}%`,
       derivations: this.stats.derivations,

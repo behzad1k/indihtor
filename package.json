@@ -26,7 +26,8 @@
     "migration:show": "npm run typeorm -- migration:show -d src/config/typeorm.config.ts",
     "seed": "ts-node src/database/seeds/signal-definitions.seed.ts",
     "schema:sync": "npm run typeorm -- schema:sync -d src/config/typeorm.config.ts",
-    "schema:drop": "npm run typeorm -- schema:drop -d src/config/typeorm.config.ts"
+    "schema:drop": "npm run typeorm -- schema:drop -d src/config/typeorm.config.ts",
+    "prewarm-cache": "npm run build && node dist/scripts/prewarm-symbol-cache.js"
   },
   "dependencies": {
     "@nestjs/axios": "^4.0.1",
@@ -73,6 +74,7 @@
     "supertest": "^7.1.4",
     "ts-jest": "^29.4.5",
     "ts-loader": "^9.5.4",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.9.3"
   },
   "jest": {

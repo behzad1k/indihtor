@@ -3,6 +3,8 @@
 /**
  * Pre-warm Symbol Availability Cache
  *
+ * FIXED VERSION - Works with ts-node and path aliases
+ *
  * This script validates which exchanges have which symbols
  * and builds a cache to avoid unnecessary API calls during fact-checking.
  *
@@ -10,12 +12,14 @@
  */
 
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from '../src/app.module';
-import { ExchangeAggregatorService } from '../src/modules/external-api/services/exchange-aggregator.service';
 import { Repository } from 'typeorm';
-import { LiveSignal } from '../src/database/entities/live-signal.entity';
 import * as fs from 'fs/promises';
 import * as path from 'path';
+
+// Use relative imports instead of path aliases for the script
+import { AppModule } from '../app.module';
+import { ExchangeAggregatorService } from '../modules/external-api/services/exchange-aggregator.service';
+import { LiveSignal } from '../database/entities/live-signal.entity';
 
 const CACHE_DIR = './data';
 const CACHE_FILE = path.join(CACHE_DIR, 'symbol-availability-cache.json');
@@ -147,8 +151,8 @@ async function prewarm() {
   let symbolsWithAllExchanges = 0;
 
   for (const [symbol, data] of Object.entries(cacheData as any)) {
-    const available = data.available.length;
-    const unavailable = data.unavailable.length;
+    const available = (data as any).available.length;
+    const unavailable = (data as any).unavailable.length;
 
     totalAvailable += available;
     totalUnavailable += unavailable;
