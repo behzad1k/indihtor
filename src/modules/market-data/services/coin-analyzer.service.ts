@@ -34,6 +34,8 @@ export class CoinAnalyzerService {
         this.TIMEFRAMES,
       );
 
+      await this.signalAnalyzer.saveAnalysisResult(result)
+
       // Save results (automatically done in SignalAnalyzerService)
       // This creates live_signals, live_tf_combos entries
 

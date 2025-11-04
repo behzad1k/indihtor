@@ -1,15 +1,18 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, Index } from 'typeorm';
 
 @Entity('cross_tf_combos')
-@Index(['comboSignature'], { unique: true })
+@Index(['comboSignatureHash'], { unique: true })
 @Index(['accuracy'])
 @Index(['comboSize', 'numTimeframes', 'accuracy'])
 export class CrossTfCombo {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'varchar', length: 1000, name: 'combo_signature' })
+  @Column({ type: 'varchar', name: 'combo_signature' })
   comboSignature: string;
+
+  @Column({ length: 64, unique: true })  // SHA-256 hash
+  comboSignatureHash: string;
 
   @Column({ type: 'varchar', length: 100 })
   timeframes: string;

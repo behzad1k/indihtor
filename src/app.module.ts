@@ -1,3 +1,5 @@
+import { typeOrmConfig } from '@config/typeorm.config';
+import { FactCheckingModule } from '@modules/fact-checker/fact-checking.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -17,17 +19,7 @@ import { JwtAuthGuard } from './modules/auth/guards/jwt-auth.guard';
       isGlobal: true,
       envFilePath: '.env',
     }),
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => ({
-        type: 'sqlite',
-        database: configService.get('DB_PATH', 'crypto_signals.db'),
-        entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        synchronize: true, // Set to false in production
-        logging: false,
-      }),
-      inject: [ConfigService],
-    }),
+    TypeOrmModule.forRoot(typeOrmConfig),
     ScheduleModule.forRoot(),
     AuthModule,
     UsersModule,
@@ -35,6 +27,7 @@ import { JwtAuthGuard } from './modules/auth/guards/jwt-auth.guard';
     MarketDataModule,
     SignalAnalyzerModule,
     ExternalApiModule,
+    FactCheckingModule
   ],
   providers: [
     {

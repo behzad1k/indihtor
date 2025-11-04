@@ -1,3 +1,5 @@
+import * as dotenv from 'dotenv';
+dotenv.config()
 export const databaseConfig = {
   type: 'mysql' as const,
   host: process.env.DB_HOST || 'localhost',

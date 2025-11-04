@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, Index } from 'typeorm';
 
 @Entity('tf_combos')
-@Index(['signalName', 'timeframe'])
+@Index(['signalNameHash', 'timeframe'])
 @Index(['accuracy'])
 export class TfCombo {
   @PrimaryGeneratedColumn()
@@ -9,6 +9,9 @@ export class TfCombo {
 
   @Column({ type: 'text' })
   signalName: string;
+
+  @Column({ length: 64, unique: true })
+  signalNameHash: string;
 
   @Column({ type: 'varchar', length: 10 })
   timeframe: string;

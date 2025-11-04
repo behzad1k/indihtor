@@ -1,10 +1,10 @@
+import { SignalValidatorService } from '@modules/trading/signal-validator.service';
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { TradingConfig } from '@/database/entities/trading-config.entity';
 import { CoinAnalyzerService } from '@/modules/market-data/services/coin-analyzer.service';
-import { SignalValidatorService } from './signal-validator.service';
 import { BuyingQueueService } from '@/modules/trading/buying-queue.service';
 import { PositionManagerService } from '@/modules/trading/position-manager.service';
 
