@@ -81,14 +81,14 @@ export class CandleCacheService {
     fetchFn: (tf: string, lim: number) => Promise<OHLCVData[] | null>,
   ): Promise<OHLCVData[] | null> {
     // Check if derivable
-    // if (this.TIMEFRAME_DERIVATIONS[timeframe]) {
-    //   return this.getDerivedCandles(symbol, timeframe, limit, fetchFn);
-    // }
-    //
-    // // Check if it's a base timeframe
-    // if (this.BASE_TIMEFRAMES.includes(timeframe)) {
-    //   return this.getBaseCandles(symbol, timeframe, limit, fetchFn);
-    // }
+    if (this.TIMEFRAME_DERIVATIONS[timeframe]) {
+      return this.getDerivedCandles(symbol, timeframe, limit, fetchFn);
+    }
+
+    // Check if it's a base timeframe
+    if (this.BASE_TIMEFRAMES.includes(timeframe)) {
+      return this.getBaseCandles(symbol, timeframe, limit, fetchFn);
+    }
 
     // Fallback: fetch directly with deduplication
     return this.fetchWithDeduplication(symbol, timeframe, limit, fetchFn);
