@@ -15,11 +15,17 @@ import {
   ExchangeType,
 } from '@/types/exchange.types';
 
+interface RateLimitInfo {
+  requestsInLastMinute: number[];
+  limit: number;
+  lastReset: number;
+}
+
 @Injectable()
 export class ExchangeAggregatorService {
   private readonly logger = new Logger(ExchangeAggregatorService.name);
 
-  // Priority order for exchanges (fastest/most reliable first)
+  // Priority order for exchanges (most reliable/fastest first)
   private readonly EXCHANGE_PRIORITY = [
     ExchangeType.BINANCE,
     ExchangeType.BYBIT,
@@ -28,9 +34,26 @@ export class ExchangeAggregatorService {
     ExchangeType.COINBASE,
     ExchangeType.KRAKEN,
     ExchangeType.GATE,
-    ExchangeType.TABDEAL,
-    ExchangeType.NOBITEX,
   ];
+
+  // Rate limits per exchange (requests per minute)
+  private readonly RATE_LIMITS: Record<ExchangeType, number> = {
+    [ExchangeType.BINANCE]: 1200,
+    [ExchangeType.BYBIT]: 600,
+    [ExchangeType.OKX]: 600,
+    [ExchangeType.KUCOIN]: 100,
+    [ExchangeType.COINBASE]: 300,
+    [ExchangeType.KRAKEN]: 60,
+    [ExchangeType.GATE]: 300,
+    [ExchangeType.TABDEAL]: 100,
+    [ExchangeType.NOBITEX]: 60,
+  };
+
+  // Track rate limits per exchange
+  private rateLimitTracking: Map<ExchangeType, RateLimitInfo> = new Map();
+
+  // Current exchange index for circular rotation
+  private currentExchangeIndex = 0;
 
   constructor(
     private readonly kucoinService: KuCoinService,
@@ -42,21 +65,90 @@ export class ExchangeAggregatorService {
     private readonly bybitService: BybitService,
     private readonly okxService: OKXService,
     private readonly gateService: GateService,
-  ) {}
+  ) {
+    // Initialize rate limit tracking
+    for (const exchange of this.EXCHANGE_PRIORITY) {
+      this.rateLimitTracking.set(exchange, {
+        requestsInLastMinute: [],
+        limit: this.RATE_LIMITS[exchange],
+        lastReset: Date.now(),
+      });
+    }
+
+    // Clean up old requests every 10 seconds
+    setInterval(() => this.cleanupRateLimits(), 10000);
+  }
 
   /**
-   * Fetch OHLCV data with automatic fallback across exchanges
-   * Priority: Binance -> Bybit -> OKX -> KuCoin -> Coinbase -> Kraken -> Gate -> Tabdeal -> Nobitex
+   * Fetch with circular priority rotation (respects rate limits)
+   * Uses round-robin with rate limit awareness
+   * MOST EFFICIENT for high-volume operations
    */
-  async fetchCandlesWithFallback(options: FetchDataOptions): Promise<OHLCVData[] | null> {
+  async fetchCandlesWithCircularPriority(
+    options: FetchDataOptions,
+  ): Promise<OHLCVData[] | null> {
+    const attempts = this.EXCHANGE_PRIORITY.length;
+
+    for (let i = 0; i < attempts; i++) {
+      // Get next exchange in rotation
+      const exchange = this.getNextAvailableExchange();
+
+      if (!exchange) {
+        this.logger.warn('All exchanges rate-limited, waiting...');
+        await this.sleep(1000);
+        continue;
+      }
+
+      try {
+        this.logger.debug(`Trying ${exchange} (rotation ${i + 1}/${attempts})`);
+
+        const data = await this.fetchCandlesFromExchange(exchange, options);
+
+        if (data && data.length >= 50) {
+          this.logger.debug(`✅ Success from ${exchange}`);
+          this.trackRequest(exchange);
+          return data;
+        }
+      } catch (error) {
+        this.logger.debug(`${exchange} failed: ${error.message}`);
+        this.trackRequest(exchange); // Still count as a request
+        continue;
+      }
+    }
+
+    this.logger.error(`All exchanges failed for ${options.symbol}`);
+    return null;
+  }
+
+  /**
+   * Fetch with sequential priority (respects rate limits)
+   * Tries exchanges in priority order, skipping rate-limited ones
+   * RECOMMENDED for general use
+   */
+  async fetchCandlesWithFallback(
+    options: FetchDataOptions,
+  ): Promise<OHLCVData[] | null> {
     this.logger.debug(`Fetching candles for ${options.symbol} on ${options.timeframe}`);
 
     for (const exchange of this.EXCHANGE_PRIORITY) {
-      const data = await this.fetchCandlesFromExchange(exchange, options);
+      // Check if exchange is rate-limited
+      if (this.isRateLimited(exchange)) {
+        this.logger.debug(`${exchange} rate-limited, skipping...`);
+        continue;
+      }
 
-      if (data && data.length >= 50) {
-        this.logger.debug(`✅ Data fetched from ${exchange}`);
-        return data;
+      try {
+        const data = await this.fetchCandlesFromExchange(exchange, options);
+
+        if (data && data.length >= 50) {
+          this.logger.debug(`✅ Data fetched from ${exchange}`);
+          this.trackRequest(exchange);
+          return data;
+        }
+      } catch (error) {
+        this.logger.warn(`${exchange} fetch failed: ${error.message}`);
+        this.trackRequest(exchange); // Still count as a request
+        continue;
       }
     }
 
@@ -65,55 +157,101 @@ export class ExchangeAggregatorService {
   }
 
   /**
-   * Fetch from multiple exchanges in parallel (race condition)
-   * Returns the first successful response
-   * OPTIMIZED FOR HIGH-VOLUME FACT-CHECKING
+   * Get next available exchange (not rate-limited) in circular rotation
    */
-  async fetchCandlesRace(
-    options: FetchDataOptions,
-    exchanges?: ExchangeType[],
-  ): Promise<OHLCVData[] | null> {
-    const targetExchanges = exchanges || this.EXCHANGE_PRIORITY.slice(0, 5); // Top 5 fastest
+  private getNextAvailableExchange(): ExchangeType | null {
+    const startIndex = this.currentExchangeIndex;
+    let attempts = 0;
 
-    this.logger.debug(
-      `Racing ${targetExchanges.length} exchanges for ${options.symbol} ${options.timeframe}`
+    while (attempts < this.EXCHANGE_PRIORITY.length) {
+      const exchange = this.EXCHANGE_PRIORITY[this.currentExchangeIndex];
+
+      // Move to next for next call
+      this.currentExchangeIndex =
+        (this.currentExchangeIndex + 1) % this.EXCHANGE_PRIORITY.length;
+
+      // Check if this exchange is available
+      if (!this.isRateLimited(exchange)) {
+        return exchange;
+      }
+
+      attempts++;
+    }
+
+    return null; // All exchanges are rate-limited
+  }
+
+  /**
+   * Check if exchange is currently rate-limited
+   */
+  private isRateLimited(exchange: ExchangeType, threshold = 0.9): boolean {
+    const info = this.rateLimitTracking.get(exchange);
+    if (!info) return false;
+
+    // Clean old requests
+    const oneMinuteAgo = Date.now() - 60000;
+    info.requestsInLastMinute = info.requestsInLastMinute.filter(
+      time => time > oneMinuteAgo
     );
 
-    const promises = targetExchanges.map(exchange =>
-      this.fetchCandlesFromExchange(exchange, options)
-      .then(data => ({ exchange, data }))
-      .catch(error => {
-        this.logger.debug(`${exchange} race failed: ${error.message}`);
-        return { exchange, data: null };
-      })
-    );
+    const currentRequests = info.requestsInLastMinute.length;
+    const limitThreshold = info.limit * threshold;
 
-    // Use Promise.race to get the first successful response
-    try {
-      const results = await Promise.race([
-        // Return first valid result
-        Promise.all(promises).then(results => {
-          const valid = results.find(r => r.data && r.data.length >= 50);
-          if (valid) {
-            this.logger.debug(`🏁 Race won by ${valid.exchange}`);
-            return valid.data;
-          }
-          return null;
-        }),
-        // Timeout after 5 seconds
-        new Promise<null>((resolve) => setTimeout(() => resolve(null), 5000))
-      ]);
+    return currentRequests >= limitThreshold;
+  }
 
-      return results;
-    } catch (error) {
-      this.logger.error(`Race failed for ${options.symbol}: ${error.message}`);
-      return null;
+  /**
+   * Track a request for rate limiting
+   */
+  private trackRequest(exchange: ExchangeType): void {
+    const info = this.rateLimitTracking.get(exchange);
+    if (!info) return;
+
+    info.requestsInLastMinute.push(Date.now());
+  }
+
+  /**
+   * Clean up old request timestamps
+   */
+  private cleanupRateLimits(): void {
+    const oneMinuteAgo = Date.now() - 60000;
+
+    for (const [exchange, info] of this.rateLimitTracking.entries()) {
+      info.requestsInLastMinute = info.requestsInLastMinute.filter(
+        time => time > oneMinuteAgo
+      );
     }
   }
 
   /**
-   * Fetch from all exchanges in parallel and return all results
-   * Useful for comparing data quality
+   * Get rate limit status for all exchanges
+   */
+  getRateLimitStatus(): Record<ExchangeType, {
+    current: number;
+    limit: number;
+    percentage: number;
+    available: boolean;
+  }> {
+    const status: any = {};
+
+    for (const [exchange, info] of this.rateLimitTracking.entries()) {
+      const current = info.requestsInLastMinute.length;
+      const percentage = (current / info.limit) * 100;
+
+      status[exchange] = {
+        current,
+        limit: info.limit,
+        percentage: Math.round(percentage),
+        available: !this.isRateLimited(exchange),
+      };
+    }
+
+    return status;
+  }
+
+  /**
+   * Fetch from multiple exchanges in parallel and return all results
+   * ONLY use this for comparison purposes, not production
    */
   async fetchCandlesParallel(
     options: FetchDataOptions,
@@ -123,7 +261,13 @@ export class ExchangeAggregatorService {
     const results = new Map<ExchangeType, OHLCVData[] | null>();
 
     const promises = targetExchanges.map(async exchange => {
+      // Skip rate-limited exchanges
+      if (this.isRateLimited(exchange)) {
+        return { exchange, data: null };
+      }
+
       const data = await this.fetchCandlesFromExchange(exchange, options);
+      this.trackRequest(exchange);
       return { exchange, data };
     });
 
@@ -185,8 +329,13 @@ export class ExchangeAggregatorService {
    */
   async getCurrentPrice(symbol: string): Promise<CurrentPriceResponse | null> {
     for (const exchange of this.EXCHANGE_PRIORITY) {
+      if (this.isRateLimited(exchange)) continue;
+
       const price = await this.getCurrentPriceFromExchange(exchange, symbol);
-      if (price) return price;
+      if (price) {
+        this.trackRequest(exchange);
+        return price;
+      }
     }
     return null;
   }
@@ -379,6 +528,12 @@ export class ExchangeAggregatorService {
     totalExchanges: number;
     majorExchanges: string[];
     priority: ExchangeType[];
+    rateLimits: Record<ExchangeType, {
+      current: number;
+      limit: number;
+      percentage: number;
+      available: boolean;
+    }>;
   } {
     return {
       totalExchanges: this.EXCHANGE_PRIORITY.length,
@@ -392,6 +547,11 @@ export class ExchangeAggregatorService {
         'Gate.io',
       ],
       priority: this.EXCHANGE_PRIORITY,
+      rateLimits: this.getRateLimitStatus(),
     };
+  }
+
+  private sleep(ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 }
