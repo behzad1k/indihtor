@@ -21,6 +21,19 @@ interface RateLimitInfo {
   lastReset: number;
 }
 
+interface SymbolAvailability {
+  available: Set<ExchangeType>;
+  unavailable: Set<ExchangeType>;
+  lastChecked: number;
+}
+
+interface FetchAttempt {
+  exchange: ExchangeType;
+  success: boolean;
+  error?: string;
+  duration: number;
+}
+
 @Injectable()
 export class ExchangeAggregatorService {
   private readonly logger = new Logger(ExchangeAggregatorService.name);
@@ -55,6 +68,22 @@ export class ExchangeAggregatorService {
   // Current exchange index for circular rotation
   private currentExchangeIndex = 0;
 
+  // NEW: Symbol availability cache
+  private readonly symbolAvailability: Map<string, SymbolAvailability> = new Map();
+  private readonly AVAILABILITY_CACHE_TTL = 86400000; // 24 hours
+
+  // NEW: Statistics tracking
+  private stats = {
+    totalRequests: 0,
+    successfulRequests: 0,
+    failedRequests: 0,
+    symbolNotFoundErrors: 0,
+    cacheHits: 0,
+    cacheMisses: 0,
+    exchangeAttempts: new Map<ExchangeType, number>(),
+    exchangeSuccesses: new Map<ExchangeType, number>(),
+  };
+
   constructor(
     private readonly kucoinService: KuCoinService,
     private readonly binanceService: BinanceService,
@@ -73,87 +102,186 @@ export class ExchangeAggregatorService {
         limit: this.RATE_LIMITS[exchange],
         lastReset: Date.now(),
       });
+      this.stats.exchangeAttempts.set(exchange, 0);
+      this.stats.exchangeSuccesses.set(exchange, 0);
     }
 
     // Clean up old requests every 10 seconds
     setInterval(() => this.cleanupRateLimits(), 10000);
+
+    // Clean up old availability cache every hour
+    setInterval(() => this.cleanupAvailabilityCache(), 3600000);
   }
 
   /**
-   * Fetch with circular priority rotation (respects rate limits)
-   * Uses round-robin with rate limit awareness
-   * MOST EFFICIENT for high-volume operations
+   * OPTIMIZED: Fetch with smart exchange selection
+   * Only tries exchanges that are likely to have the symbol
    */
   async fetchCandlesWithCircularPriority(
     options: FetchDataOptions,
   ): Promise<OHLCVData[] | null> {
-    const attempts = this.EXCHANGE_PRIORITY.length;
+    this.stats.totalRequests++;
+    const startTime = Date.now();
+    const attempts: FetchAttempt[] = [];
 
-    for (let i = 0; i < attempts; i++) {
-      // Get next exchange in rotation
-      const exchange = this.getNextAvailableExchange();
+    // Get available exchanges for this symbol
+    const availableExchanges = this.getAvailableExchanges(options.symbol);
 
-      if (!exchange) {
-        this.logger.warn('All exchanges rate-limited, waiting...');
-        await this.sleep(1000);
-        continue;
+    if (availableExchanges.length === 0) {
+      this.logger.debug(`No known exchanges for ${options.symbol}, trying all`);
+    } else {
+      this.logger.debug(
+        `${options.symbol} available on: ${availableExchanges.map(e => e.toString()).join(', ')}`
+      );
       }
 
-      try {
-        this.logger.debug(`Trying ${exchange} (rotation ${i + 1}/${attempts})`);
+    const exchangesToTry = availableExchanges.length > 0
+      ? availableExchanges
+      : this.EXCHANGE_PRIORITY;
 
-        const data = await this.fetchCandlesFromExchange(exchange, options);
+    // Try each exchange
+    for (let i = 0; i < exchangesToTry.length; i++) {
+      const exchange = exchangesToTry[i];
 
-        if (data && data.length >= 50) {
-          this.logger.debug(`✅ Success from ${exchange}`);
-          this.trackRequest(exchange);
-          return data;
-        }
-      } catch (error) {
-        this.logger.debug(`${exchange} failed: ${error.message}`);
-        this.trackRequest(exchange); // Still count as a request
-        continue;
-      }
-    }
-
-    this.logger.error(`All exchanges failed for ${options.symbol}`);
-    return null;
-  }
-
-  /**
-   * Fetch with sequential priority (respects rate limits)
-   * Tries exchanges in priority order, skipping rate-limited ones
-   * RECOMMENDED for general use
-   */
-  async fetchCandlesWithFallback(
-    options: FetchDataOptions,
-  ): Promise<OHLCVData[] | null> {
-    this.logger.debug(`Fetching candles for ${options.symbol} on ${options.timeframe}`);
-
-    for (const exchange of this.EXCHANGE_PRIORITY) {
-      // Check if exchange is rate-limited
+      // Skip if rate limited
       if (this.isRateLimited(exchange)) {
         this.logger.debug(`${exchange} rate-limited, skipping...`);
         continue;
       }
 
+      // Skip if known to not have this symbol
+      if (this.isKnownUnavailable(options.symbol, exchange)) {
+        this.logger.debug(`${exchange} known to not have ${options.symbol}, skipping...`);
+        continue;
+      }
+
+      const attemptStart = Date.now();
+      this.logger.debug(`Trying ${exchange} (rotation ${i + 1}/${exchangesToTry.length})`);
+      this.stats.exchangeAttempts.set(
+        exchange,
+        (this.stats.exchangeAttempts.get(exchange) || 0) + 1
+      );
+
       try {
         const data = await this.fetchCandlesFromExchange(exchange, options);
+
+        const attemptDuration = Date.now() - attemptStart;
 
         if (data && data.length >= 50) {
           this.logger.debug(`✅ Data fetched from ${exchange}`);
           this.trackRequest(exchange);
+          this.markAvailable(options.symbol, exchange);
+          this.stats.successfulRequests++;
+          this.stats.exchangeSuccesses.set(
+            exchange,
+            (this.stats.exchangeSuccesses.get(exchange) || 0) + 1
+          );
+
+          attempts.push({
+            exchange,
+            success: true,
+            duration: attemptDuration,
+          });
+
+          this.logAttempts(options.symbol, attempts, Date.now() - startTime);
           return data;
+        } else {
+          this.logger.warn(`${exchange} returned insufficient data for ${options.symbol}`);
+          attempts.push({
+            exchange,
+            success: false,
+            error: 'Insufficient data',
+            duration: attemptDuration,
+          });
         }
       } catch (error) {
-        this.logger.warn(`${exchange} fetch failed: ${error.message}`);
+        const attemptDuration = Date.now() - attemptStart;
+        const errorMsg = error.message || String(error);
+
+        this.logger.debug(`${exchange} failed: ${errorMsg}`);
+
+        // Check if it's a "symbol not found" error
+        if (this.isSymbolNotFoundError(errorMsg)) {
+          this.logger.debug(`${exchange} doesn't have ${options.symbol}, marking as unavailable`);
+          this.markUnavailable(options.symbol, exchange);
+          this.stats.symbolNotFoundErrors++;
+        }
+
+        attempts.push({
+          exchange,
+          success: false,
+          error: errorMsg,
+          duration: attemptDuration,
+        });
+
         this.trackRequest(exchange); // Still count as a request
         continue;
       }
     }
 
-    this.logger.error(`❌ Failed to fetch data for ${options.symbol} from all exchanges`);
+    // All exchanges failed
+    this.stats.failedRequests++;
+    this.logger.error(`❌ All exchanges failed for ${options.symbol}`);
+    this.logAttempts(options.symbol, attempts, Date.now() - startTime);
+
     return null;
+  }
+  /**
+   * Check if error indicates symbol not found
+   */
+  private isSymbolNotFoundError(errorMsg: string): boolean {
+    const notFoundIndicators = [
+      '404',
+      'not found',
+      'invalid symbol',
+      'unknown symbol',
+      'does not exist',
+      'invalid response',
+      'symbol not supported',
+    ];
+
+    const lowerMsg = errorMsg.toLowerCase();
+    return notFoundIndicators.some(indicator => lowerMsg.includes(indicator));
+  }
+
+  /**
+   * Get exchanges that are known to have this symbol
+   */
+  private getAvailableExchanges(symbol: string): ExchangeType[] {
+    const cached = this.symbolAvailability.get(symbol);
+
+    if (!cached) {
+      this.stats.cacheMisses++;
+      return []; // Unknown, will try all
+    }
+
+    // Check if cache is stale
+    if (Date.now() - cached.lastChecked > this.AVAILABILITY_CACHE_TTL) {
+      this.stats.cacheMisses++;
+      this.symbolAvailability.delete(symbol);
+      return [];
+    }
+
+    this.stats.cacheHits++;
+
+    // Return available exchanges in priority order
+    return this.EXCHANGE_PRIORITY.filter(ex => cached.available.has(ex));
+  }
+
+
+  /**
+   * Check if exchange is known to not have this symbol
+   */
+  private isKnownUnavailable(symbol: string, exchange: ExchangeType): boolean {
+    const cached = this.symbolAvailability.get(symbol);
+    if (!cached) return false;
+
+    // Check if cache is stale
+    if (Date.now() - cached.lastChecked > this.AVAILABILITY_CACHE_TTL) {
+      return false;
+    }
+
+    return cached.unavailable.has(exchange);
   }
 
   /**
@@ -549,6 +677,246 @@ export class ExchangeAggregatorService {
       priority: this.EXCHANGE_PRIORITY,
       rateLimits: this.getRateLimitStatus(),
     };
+  }
+
+
+  /**
+   * Mark symbol as available on exchange
+   */
+  private markAvailable(symbol: string, exchange: ExchangeType): void {
+    let cached = this.symbolAvailability.get(symbol);
+
+    if (!cached) {
+      cached = {
+        available: new Set(),
+        unavailable: new Set(),
+        lastChecked: Date.now(),
+      };
+      this.symbolAvailability.set(symbol, cached);
+    }
+
+    cached.available.add(exchange);
+    cached.unavailable.delete(exchange); // Remove from unavailable if present
+    cached.lastChecked = Date.now();
+  }
+
+  /**
+   * Mark symbol as unavailable on exchange
+   */
+  private markUnavailable(symbol: string, exchange: ExchangeType): void {
+    let cached = this.symbolAvailability.get(symbol);
+
+    if (!cached) {
+      cached = {
+        available: new Set(),
+        unavailable: new Set(),
+        lastChecked: Date.now(),
+      };
+      this.symbolAvailability.set(symbol, cached);
+    }
+
+    cached.unavailable.add(exchange);
+    cached.available.delete(exchange); // Remove from available if present
+    cached.lastChecked = Date.now();
+  }
+
+  /**
+   * Log all attempts for debugging
+   */
+  private logAttempts(symbol: string, attempts: FetchAttempt[], totalDuration: number): void {
+    if (attempts.length === 0) return;
+
+    this.logger.debug(`\n=== Fetch Summary for ${symbol} ===`);
+    this.logger.debug(`Total duration: ${totalDuration}ms`);
+    this.logger.debug(`Attempts: ${attempts.length}`);
+
+    for (const attempt of attempts) {
+      const status = attempt.success ? '✅' : '❌';
+      const error = attempt.error ? ` - ${attempt.error}` : '';
+      this.logger.debug(
+        `  ${status} ${attempt.exchange}: ${attempt.duration}ms${error}`
+      );
+    }
+    this.logger.debug(`=====================================\n`);
+  }
+
+  /**
+   * Bulk validate symbol availability across exchanges
+   * Useful for pre-warming the cache
+   */
+  async validateSymbolAvailability(symbol: string): Promise<{
+    available: ExchangeType[];
+    unavailable: ExchangeType[];
+  }> {
+    const available: ExchangeType[] = [];
+    const unavailable: ExchangeType[] = [];
+
+    this.logger.log(`Validating ${symbol} across all exchanges...`);
+
+    // Try all exchanges in parallel (quick check)
+    const promises = this.EXCHANGE_PRIORITY.map(async exchange => {
+      if (this.isRateLimited(exchange)) {
+        return { exchange, available: null };
+      }
+
+      try {
+        const data = await this.fetchCandlesFromExchange(exchange, {
+          symbol,
+          timeframe: '1h',
+          limit: 10, // Small limit for validation
+        });
+
+        return { exchange, available: data && data.length > 0 };
+      } catch (error) {
+        const isNotFound = this.isSymbolNotFoundError(error.message);
+        return { exchange, available: isNotFound ? false : null };
+      }
+    });
+
+    const results = await Promise.allSettled(promises);
+
+    for (const result of results) {
+      if (result.status === 'fulfilled' && result.value) {
+        const { exchange, available: isAvailable } = result.value;
+
+        if (isAvailable === true) {
+          available.push(exchange);
+          this.markAvailable(symbol, exchange);
+        } else if (isAvailable === false) {
+          unavailable.push(exchange);
+          this.markUnavailable(symbol, exchange);
+        }
+      }
+    }
+
+    this.logger.log(`${symbol} validation complete:`);
+    this.logger.log(`  Available: ${available.join(', ')}`);
+    this.logger.log(`  Unavailable: ${unavailable.join(', ')}`);
+
+    return { available, unavailable };
+  }
+
+  /**
+   * Batch validate multiple symbols
+   */
+  async batchValidateSymbols(symbols: string[]): Promise<void> {
+    this.logger.log(`Batch validating ${symbols.length} symbols...`);
+
+    const batchSize = 10;
+    for (let i = 0; i < symbols.length; i += batchSize) {
+      const batch = symbols.slice(i, i + batchSize);
+
+      await Promise.all(
+        batch.map(symbol => this.validateSymbolAvailability(symbol))
+      );
+
+      this.logger.log(
+        `Progress: ${Math.min(i + batchSize, symbols.length)}/${symbols.length}`
+      );
+
+      // Small delay between batches
+      await this.sleep(1000);
+    }
+
+    this.logger.log(`✅ Batch validation complete`);
+  }
+
+  /**
+   * Clean up stale availability cache entries
+   */
+  private cleanupAvailabilityCache(): void {
+    const now = Date.now();
+    let cleaned = 0;
+
+    for (const [symbol, cached] of this.symbolAvailability.entries()) {
+      if (now - cached.lastChecked >= this.AVAILABILITY_CACHE_TTL) {
+        this.symbolAvailability.delete(symbol);
+        cleaned++;
+      }
+    }
+
+    if (cleaned > 0) {
+      this.logger.debug(`Cleaned up ${cleaned} stale availability cache entries`);
+    }
+  }
+
+  /**
+   * Get comprehensive statistics
+   */
+  getOptimizedStats() {
+    const exchangeStats: any = {};
+
+    for (const exchange of this.EXCHANGE_PRIORITY) {
+      const attempts = this.stats.exchangeAttempts.get(exchange) || 0;
+      const successes = this.stats.exchangeSuccesses.get(exchange) || 0;
+      const successRate = attempts > 0 ? (successes / attempts * 100).toFixed(2) : '0.00';
+
+      exchangeStats[exchange] = {
+        attempts,
+        successes,
+        failures: attempts - successes,
+        successRate: `${successRate}%`,
+      };
+    }
+
+    const cacheHitRate = this.stats.totalRequests > 0
+      ? ((this.stats.cacheHits / this.stats.totalRequests) * 100).toFixed(2)
+      : '0.00';
+
+    return {
+      overall: {
+        totalRequests: this.stats.totalRequests,
+        successfulRequests: this.stats.successfulRequests,
+        failedRequests: this.stats.failedRequests,
+        symbolNotFoundErrors: this.stats.symbolNotFoundErrors,
+        successRate: this.stats.totalRequests > 0
+          ? `${(this.stats.successfulRequests / this.stats.totalRequests * 100).toFixed(2)}%`
+          : '0.00%',
+      },
+      cache: {
+        hits: this.stats.cacheHits,
+        misses: this.stats.cacheMisses,
+        hitRate: `${cacheHitRate}%`,
+        cachedSymbols: this.symbolAvailability.size,
+      },
+      exchanges: exchangeStats,
+      rateLimits: this.getRateLimitStatus(),
+    };
+  }
+
+  /**
+   * Export availability cache for persistence
+   */
+  exportAvailabilityCache(): any {
+    const exported: any = {};
+
+    for (const [symbol, cached] of this.symbolAvailability.entries()) {
+      exported[symbol] = {
+        available: Array.from(cached.available),
+        unavailable: Array.from(cached.unavailable),
+        lastChecked: cached.lastChecked,
+      };
+    }
+
+    return exported;
+  }
+
+  /**
+   * Import availability cache from persistence
+   */
+  importAvailabilityCache(data: any): void {
+    let imported = 0;
+
+    for (const [symbol, cached] of Object.entries(data as any)) {
+      this.symbolAvailability.set(symbol, {
+        available: new Set((cached as any).available),
+        unavailable: new Set((cached as any).unavailable),
+        lastChecked: (cached as any).lastChecked,
+      });
+      imported++;
+    }
+
+    this.logger.log(`✅ Imported ${imported} symbol availability entries`);
   }
 
   private sleep(ms: number): Promise<void> {
