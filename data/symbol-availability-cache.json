@@ -1,0 +1,5017 @@
+{
+  "BTC": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231948042
+  },
+  "ACA": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231932864
+  },
+  "1INCH": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231932864
+  },
+  "ACM": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231932864
+  },
+  "A": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231932869
+  },
+  "ACE": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231932880
+  },
+  "0G": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231932905
+  },
+  "AAVE": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231932918
+  },
+  "A2Z": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231932963
+  },
+  "ACH": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231932963
+  },
+  "2Z": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231933418
+  },
+  "ETH": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231963622
+  },
+  "AITECH": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231934838
+  },
+  "AGLD": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231934838
+  },
+  "ADX": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231934843
+  },
+  "AI": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231934843
+  },
+  "ACT": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231934844
+  },
+  "AEVO": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231934844
+  },
+  "AI16Z": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231934868
+  },
+  "AERO": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231934868
+  },
+  "AIOZ": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231934868
+  },
+  "ADA": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231959375
+  },
+  "AKT": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231936321
+  },
+  "AMP": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [
+      "BYBIT"
+    ],
+    "lastChecked": 1762231936322
+  },
+  "APE": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231936328
+  },
+  "ANKR": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231936333
+  },
+  "API3": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231936341
+  },
+  "ALT": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231936341
+  },
+  "ALGO": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231936363
+  },
+  "ANIME": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231936393
+  },
+  "ALPINE": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231936405
+  },
+  "ALICE": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231936870
+  },
+  "BNB": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231945761
+  },
+  "ARB": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231938313
+  },
+  "APT": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231938320
+  },
+  "ASR": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231938321
+  },
+  "ARDR": {
+    "available": [
+      "BINANCE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231938324
+  },
+  "ARKM": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231938325
+  },
+  "AR": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231938352
+  },
+  "ARPA": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231938353
+  },
+  "ASP": {
+    "available": [
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231938381
+  },
+  "ASTER": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231938430
+  },
+  "ARK": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231939380
+  },
+  "ATH": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231940772
+  },
+  "ATA": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231940773
+  },
+  "ATM": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231940792
+  },
+  "AVAIL": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231940792
+  },
+  "AUCTION": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231940795
+  },
+  "ATOM": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231940795
+  },
+  "AURORA": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231940795
+  },
+  "AVA": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231940814
+  },
+  "ASTR": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231940827
+  },
+  "AUDIO": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231940844
+  },
+  "AXL": {
+    "available": [
+      "BINANCE",
+      "BYBIT"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231942390
+  },
+  "BABY": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231942391
+  },
+  "AWE": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231942391
+  },
+  "BABYDOGE": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231942394
+  },
+  "AVNT": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231942396
+  },
+  "AXS": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231942396
+  },
+  "B3": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231942396
+  },
+  "AVAX": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231942396
+  },
+  "BANANA": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231942397
+  },
+  "BANANAS31": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231942397
+  },
+  "NEO": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231989055
+  },
+  "BDX": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231943813
+  },
+  "BEL": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231943813
+  },
+  "BAND": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231943829
+  },
+  "BEAMX": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231943829
+  },
+  "BB": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231943830
+  },
+  "BARD": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231943830
+  },
+  "BERA": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231943831
+  },
+  "BAT": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231943870
+  },
+  "BAR": {
+    "available": [
+      "BINANCE",
+      "BYBIT"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231944211
+  },
+  "BCH": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231944336
+  },
+  "BICO": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231945743
+  },
+  "BNT": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231945744
+  },
+  "BLOK": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231945744
+  },
+  "BIO": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231945755
+  },
+  "BMT": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231945761
+  },
+  "BIGTIME": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231945766
+  },
+  "BLAST": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231945782
+  },
+  "BLUR": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231945791
+  },
+  "BERT": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231946535
+  },
+  "BNX": {
+    "available": [
+      "BINANCE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231947968
+  },
+  "BTTC": {
+    "available": [
+      "BINANCE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231947974
+  },
+  "C": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231947974
+  },
+  "BR": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231947974
+  },
+  "BOME": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231947998
+  },
+  "BONK": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231947998
+  },
+  "LTC": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231982553
+  },
+  "BRETT": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231948043
+  },
+  "BOBA": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231948043
+  },
+  "BTR": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231948749
+  },
+  "CARV": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231950181
+  },
+  "CFX": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231950181
+  },
+  "CELR": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231950182
+  },
+  "C98": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231950182
+  },
+  "CAKE": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231950182
+  },
+  "CELO": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231950182
+  },
+  "CETUS": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231950209
+  },
+  "CAT": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231950272
+  },
+  "CATI": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231950281
+  },
+  "CHEEMS": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231950898
+  },
+  "CITY": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231952331
+  },
+  "CHESS": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231952334
+  },
+  "CKB": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231952334
+  },
+  "COQ": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231952334
+  },
+  "COS": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231952338
+  },
+  "CHR": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231952344
+  },
+  "CHZ": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231952345
+  },
+  "COMP": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231952361
+  },
+  "CHILLGUY": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231952378
+  },
+  "COTI": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231952922
+  },
+  "QTUM": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232001387
+  },
+  "CTSI": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231954392
+  },
+  "CRV": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231954399
+  },
+  "CVC": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231954399
+  },
+  "CSPR": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231954400
+  },
+  "COW": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231954400
+  },
+  "CTC": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231954400
+  },
+  "CRO": {
+    "available": [
+      "OKX",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231954898
+  },
+  "CTK": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231955359
+  },
+  "CROSS": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231955438
+  },
+  "CPOOL": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231956330
+  },
+  "D": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231957751
+  },
+  "DEGO": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231957762
+  },
+  "DEGEN": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231957762
+  },
+  "DAO": {
+    "available": [
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231957769
+  },
+  "DENT": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231957770
+  },
+  "DATA": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231957770
+  },
+  "DASH": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231957773
+  },
+  "CYBER": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231957773
+  },
+  "DBR": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231957879
+  },
+  "DCR": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231958159
+  },
+  "DOT": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231959604
+  },
+  "DRIFT": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231959606
+  },
+  "DIA": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231959606
+  },
+  "DOGE": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231959622
+  },
+  "DOOD": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231959623
+  },
+  "DODO": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231959623
+  },
+  "DGB": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231959623
+  },
+  "DOLO": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231959628
+  },
+  "DOGS": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231959673
+  },
+  "DEXE": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231960454
+  },
+  "XRP": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232021782
+  },
+  "DYDX": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231962034
+  },
+  "EDU": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231962034
+  },
+  "ENJ": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231962035
+  },
+  "ENA": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231962035
+  },
+  "EGLD": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231962035
+  },
+  "DYM": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231962035
+  },
+  "EIGEN": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231962035
+  },
+  "ELON": {
+    "available": [
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231962035
+  },
+  "DUSK": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231962035
+  },
+  "EDEN": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231962206
+  },
+  "ENSO": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231963622
+  },
+  "ERA": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231963622
+  },
+  "ETHFI": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231963634
+  },
+  "EPIC": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231963634
+  },
+  "EUR": {
+    "available": [
+      "BINANCE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231963635
+  },
+  "ENS": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231963635
+  },
+  "F": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231963636
+  },
+  "ETHW": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231963653
+  },
+  "ETC": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231988729
+  },
+  "FET": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232025964
+  },
+  "FLOCK": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231965083
+  },
+  "FLM": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231965083
+  },
+  "FIDA": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231965090
+  },
+  "FARM": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231965090
+  },
+  "FLK": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231965096
+  },
+  "FIL": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231965108
+  },
+  "FF": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231965109
+  },
+  "FIO": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231965113
+  },
+  "FARTCOIN": {
+    "available": [
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [
+      "BYBIT"
+    ],
+    "lastChecked": 1762231965127
+  },
+  "TUSD": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232014264
+  },
+  "FLOKI": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231966558
+  },
+  "FORM": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231966559
+  },
+  "FORTH": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231966561
+  },
+  "FXS": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231966561
+  },
+  "FLOW": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231966561
+  },
+  "FLUX": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231966568
+  },
+  "FUN": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231966569
+  },
+  "FTT": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231966573
+  },
+  "FLR": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231966841
+  },
+  "FOXY": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231966841
+  },
+  "G": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231968221
+  },
+  "GAS": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231968228
+  },
+  "GHST": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231968228
+  },
+  "GIGA": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231968238
+  },
+  "GALA": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231968241
+  },
+  "GHX": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231968247
+  },
+  "GMT": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231968272
+  },
+  "GAIA": {
+    "available": [
+      "KUCOIN"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231968340
+  },
+  "GLM": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231968353
+  },
+  "GIGGLE": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231968910
+  },
+  "IOTA": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231975808
+  },
+  "H": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231970316
+  },
+  "GODS": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231970317
+  },
+  "GRT": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231970321
+  },
+  "HBAR": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231970425
+  },
+  "GOAT": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231970558
+  },
+  "HANA": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231970707
+  },
+  "GMX": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231970707
+  },
+  "GTC": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231970707
+  },
+  "HEI": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231970726
+  },
+  "GRASS": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231970780
+  },
+  "HOT": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232014811
+  },
+  "HOME": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231972169
+  },
+  "HIGH": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231972175
+  },
+  "HFT": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231972175
+  },
+  "HIPPO": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231972180
+  },
+  "HMSTR": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231972180
+  },
+  "HOLO": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231972204
+  },
+  "HEMI": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231972204
+  },
+  "HOOK": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231972239
+  },
+  "HIVE": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231972585
+  },
+  "HUMA": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231973993
+  },
+  "ILV": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231973995
+  },
+  "ICX": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231992792
+  },
+  "ICP": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231973996
+  },
+  "ID": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231973996
+  },
+  "HYPER": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231973996
+  },
+  "IMX": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231974000
+  },
+  "ICE": {
+    "available": [
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231974044
+  },
+  "XLM": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232021782
+  },
+  "HYPE": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [
+      "OKX"
+    ],
+    "lastChecked": 1762231974382
+  },
+  "IN": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231974390
+  },
+  "JASMY": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231975802
+  },
+  "IO": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231975802
+  },
+  "INSP": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231975803
+  },
+  "IP": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231975829
+  },
+  "IOST": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231975829
+  },
+  "IQ": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231975830
+  },
+  "INJ": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231975830
+  },
+  "IOTX": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231975830
+  },
+  "INIT": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231975842
+  },
+  "JUP": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231977258
+  },
+  "K": {
+    "available": [
+      "BYBIT",
+      "KUCOIN"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231977263
+  },
+  "JUV": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231977263
+  },
+  "JST": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231977267
+  },
+  "KAIA": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231977267
+  },
+  "JELLYJELLY": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231977273
+  },
+  "JTO": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231977292
+  },
+  "KAITO": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231977292
+  },
+  "JOE": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231977326
+  },
+  "KARRAT": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231977346
+  },
+  "ONT": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231991394
+  },
+  "KCS": {
+    "available": [
+      "BYBIT",
+      "KUCOIN"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231978754
+  },
+  "KNC": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231978757
+  },
+  "LADYS": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231978762
+  },
+  "KAS": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231978762
+  },
+  "KMNO": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231978762
+  },
+  "KSM": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231978766
+  },
+  "KGEN": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231978814
+  },
+  "KAVA": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231978991
+  },
+  "KERNEL": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231978992
+  },
+  "LA": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231978993
+  },
+  "LISTA": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231980441
+  },
+  "LINEA": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231980442
+  },
+  "LOOKS": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231980442
+  },
+  "LPT": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231980443
+  },
+  "LQTY": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231980443
+  },
+  "LDO": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231980443
+  },
+  "LINK": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232006645
+  },
+  "LAYER": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "GATE"
+    ],
+    "unavailable": [
+      "KUCOIN"
+    ],
+    "lastChecked": 1762231980609
+  },
+  "LIGHT": {
+    "available": [
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231980800
+  },
+  "LAZIO": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231980801
+  },
+  "TRX": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232014254
+  },
+  "LUNA": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231982197
+  },
+  "LUNC": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231982197
+  },
+  "MANA": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231982209
+  },
+  "LUMIA": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231982216
+  },
+  "LSK": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231982216
+  },
+  "MANTA": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231982229
+  },
+  "LRC": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231982229
+  },
+  "MAGIC": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231982311
+  },
+  "MAJOR": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231982433
+  },
+  "MERL": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231983949
+  },
+  "MAV": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231983950
+  },
+  "MASK": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231983958
+  },
+  "MBL": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231983958
+  },
+  "MEME": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231983958
+  },
+  "MDT": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231983958
+  },
+  "MBOX": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231983960
+  },
+  "MAVIA": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231983967
+  },
+  "MEMEFI": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231983973
+  },
+  "METIS": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [
+      "BYBIT"
+    ],
+    "lastChecked": 1762231983980
+  },
+  "MNT": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231985386
+  },
+  "MOCA": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231985391
+  },
+  "MINA": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231985397
+  },
+  "MIRA": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [
+      "BYBIT"
+    ],
+    "lastChecked": 1762231985414
+  },
+  "MOG": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231985422
+  },
+  "MORPHO": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231985434
+  },
+  "MOBILE": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231985453
+  },
+  "MLN": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231985477
+  },
+  "MEW": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231985627
+  },
+  "MOODENG": {
+    "available": [
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231985789
+  },
+  "MOVR": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231987205
+  },
+  "NEAR": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231987206
+  },
+  "MOVE": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231987207
+  },
+  "NAKA": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231987224
+  },
+  "MUBARAK": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231987224
+  },
+  "NEIROCTO": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231987246
+  },
+  "MUBI": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231987259
+  },
+  "MTL": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231987323
+  },
+  "MPLX": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231987337
+  },
+  "MYRO": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231987422
+  },
+  "NMR": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231988826
+  },
+  "NXPC": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231988839
+  },
+  "NKN": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231988858
+  },
+  "NOM": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231988858
+  },
+  "NEWT": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231988878
+  },
+  "NTRN": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231988900
+  },
+  "NFT": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231988916
+  },
+  "NFP": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231989047
+  },
+  "NOT": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231989242
+  },
+  "OPEN": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231991326
+  },
+  "OMG": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231991338
+  },
+  "ONG": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232010677
+  },
+  "OGN": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231991345
+  },
+  "ONE": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231991345
+  },
+  "OM": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231991345
+  },
+  "ONDO": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231991369
+  },
+  "ORBS": {
+    "available": [
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231991391
+  },
+  "OP": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231991396
+  },
+  "PARTI": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231992829
+  },
+  "OSMO": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231992829
+  },
+  "OXT": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231992830
+  },
+  "P": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231992830
+  },
+  "ORDER": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231992830
+  },
+  "PENGU": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231992830
+  },
+  "ORDI": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231992839
+  },
+  "PAXG": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231992860
+  },
+  "PENDLE": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231992899
+  },
+  "ORCA": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231993742
+  },
+  "VET": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232017399
+  },
+  "PERP": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231995188
+  },
+  "PEPE": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231995188
+  },
+  "PEOPLE": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231995206
+  },
+  "PIVX": {
+    "available": [
+      "BINANCE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231995207
+  },
+  "PHB": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231995207
+  },
+  "PIXEL": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231995208
+  },
+  "PHIL": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231995220
+  },
+  "PHA": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231995270
+  },
+  "PLUME": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231995270
+  },
+  "PEPE2": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231995426
+  },
+  "POPCAT": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231996848
+  },
+  "PORTO": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231996848
+  },
+  "POLYX": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231996849
+  },
+  "PROM": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231996856
+  },
+  "PORTAL": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231996856
+  },
+  "POL": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231996857
+  },
+  "PONKE": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231996865
+  },
+  "PRCL": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231996872
+  },
+  "PNUT": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231997152
+  },
+  "POWR": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231997814
+  },
+  "PUFFER": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231999366
+  },
+  "PROVE": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231999380
+  },
+  "QI": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231999381
+  },
+  "Q": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231999381
+  },
+  "PUMP": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231999382
+  },
+  "PSG": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231999384
+  },
+  "PYTH": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231999444
+  },
+  "PYR": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231999476
+  },
+  "PTB": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231999711
+  },
+  "USDC": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232015942
+  },
+  "PUNDIX": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762231999951
+  },
+  "RAD": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232001375
+  },
+  "RDNT": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232001375
+  },
+  "RARE": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232001386
+  },
+  "RED": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232001387
+  },
+  "QNT": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232001414
+  },
+  "REEF": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232001424
+  },
+  "RAY": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232001448
+  },
+  "QUICK": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232001520
+  },
+  "RECALL": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232002404
+  },
+  "RESOLV": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232003823
+  },
+  "RENDER": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232003829
+  },
+  "RIF": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232003836
+  },
+  "REZ": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232003844
+  },
+  "ROAM": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232003844
+  },
+  "REI": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232003849
+  },
+  "ROSE": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232003849
+  },
+  "RLC": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232003854
+  },
+  "REQ": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232003854
+  },
+  "RPL": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232003872
+  },
+  "RVN": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232005271
+  },
+  "RUNE": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232005271
+  },
+  "SAFE": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232005280
+  },
+  "SAND": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232005280
+  },
+  "S": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232005280
+  },
+  "SAPIEN": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232005282
+  },
+  "SAGA": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232005283
+  },
+  "RSR": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232005299
+  },
+  "SAHARA": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232005300
+  },
+  "RVV": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232005361
+  },
+  "SD": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232006778
+  },
+  "SC": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232006779
+  },
+  "SCRT": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232006790
+  },
+  "SEI": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232006790
+  },
+  "SCR": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232006791
+  },
+  "SHIB": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232006791
+  },
+  "SFUND": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232006791
+  },
+  "SFP": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232006791
+  },
+  "SHELL": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232006857
+  },
+  "SATS": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232006862
+  },
+  "SNT": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232008280
+  },
+  "SKL": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232008281
+  },
+  "SLP": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232008286
+  },
+  "SIREN": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232008287
+  },
+  "SOL": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232008287
+  },
+  "SLAY": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [
+      "BYBIT"
+    ],
+    "lastChecked": 1762232008287
+  },
+  "SKY": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232008288
+  },
+  "SNEK": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232008295
+  },
+  "SNX": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232008300
+  },
+  "SOMI": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232008431
+  },
+  "STG": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232009841
+  },
+  "SPK": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232009842
+  },
+  "SOPH": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232009842
+  },
+  "SOON": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232009842
+  },
+  "STORJ": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232009844
+  },
+  "STBL": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232009857
+  },
+  "SQD": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232009863
+  },
+  "STEEM": {
+    "available": [
+      "BINANCE",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232009881
+  },
+  "SSV": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232009905
+  },
+  "SPELL": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232009928
+  },
+  "STRAX": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232011357
+  },
+  "SWELL": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232011357
+  },
+  "STRK": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232011358
+  },
+  "SUNDOG": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232011358
+  },
+  "SUSHI": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232011362
+  },
+  "SWEAT": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232011362
+  },
+  "STX": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232011368
+  },
+  "SUI": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232011369
+  },
+  "SUN": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232011373
+  },
+  "SUPER": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232011396
+  },
+  "SYS": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232012787
+  },
+  "SXP": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232012787
+  },
+  "T": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232012793
+  },
+  "TFUEL": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232012798
+  },
+  "THETA": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232012798
+  },
+  "TIA": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232012798
+  },
+  "SYN": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232012803
+  },
+  "TAO": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232012824
+  },
+  "TLM": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232012833
+  },
+  "TAIKO": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232012833
+  },
+  "TRAC": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232014233
+  },
+  "TON": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232014233
+  },
+  "TOWNS": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232014234
+  },
+  "TRB": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232014234
+  },
+  "TUT": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232014234
+  },
+  "TURBO": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232014245
+  },
+  "TREE": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232014271
+  },
+  "TRU": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232014531
+  },
+  "TWT": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232015930
+  },
+  "USELESS": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232015942
+  },
+  "USUAL": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [
+      "BYBIT"
+    ],
+    "lastChecked": 1762232015948
+  },
+  "VANA": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232015948
+  },
+  "UMA": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232015955
+  },
+  "UNI": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232015955
+  },
+  "VANRY": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232015961
+  },
+  "UB": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232015961
+  },
+  "VELO": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232015961
+  },
+  "ZIL": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232024949
+  },
+  "VFY": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232017357
+  },
+  "W": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232017363
+  },
+  "VRA": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232017364
+  },
+  "VENOM": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232017364
+  },
+  "VOXEL": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232017364
+  },
+  "VIC": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232017368
+  },
+  "VTHO": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232017368
+  },
+  "VIRTUAL": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232017380
+  },
+  "WAL": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232017415
+  },
+  "WAN": {
+    "available": [
+      "BINANCE",
+      "KUCOIN"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232018829
+  },
+  "WEMIX": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232018841
+  },
+  "WIN": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232018842
+  },
+  "WIF": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232018842
+  },
+  "WLD": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232018847
+  },
+  "WCT": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232018848
+  },
+  "WAVES": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232018848
+  },
+  "WAXP": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232018867
+  },
+  "WLFI": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232018875
+  },
+  "WEN": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232018875
+  },
+  "ZRX": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232024971
+  },
+  "WMTX": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232020274
+  },
+  "X": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232020275
+  },
+  "XDC": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232020294
+  },
+  "WOD": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232020294
+  },
+  "XAN": {
+    "available": [
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232020294
+  },
+  "XAUT": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232020294
+  },
+  "XCH": {
+    "available": [
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232020294
+  },
+  "XAI": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232020294
+  },
+  "XCN": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232020296
+  },
+  "WOO": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232020378
+  },
+  "XEC": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232021777
+  },
+  "XNO": {
+    "available": [
+      "BINANCE",
+      "KUCOIN"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232021783
+  },
+  "XTZ": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "KRAKEN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232021783
+  },
+  "XEM": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232021783
+  },
+  "XNY": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232021802
+  },
+  "XPL": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232021802
+  },
+  "XMR": {
+    "available": [
+      "BINANCE",
+      "KUCOIN",
+      "KRAKEN"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232021829
+  },
+  "XRD": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232022090
+  },
+  "XYO": {
+    "available": [
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232023511
+  },
+  "XVG": {
+    "available": [
+      "BINANCE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232023513
+  },
+  "YB": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232023523
+  },
+  "YFI": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232023523
+  },
+  "YGG": {
+    "available": [
+      "BINANCE",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232023524
+  },
+  "ZETA": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232023524
+  },
+  "ZBCN": {
+    "available": [
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232023524
+  },
+  "ZEC": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232023524
+  },
+  "ZEN": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "KUCOIN"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232023525
+  },
+  "ZEUS": {
+    "available": [
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232023539
+  },
+  "ZORA": {
+    "available": [
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232024939
+  },
+  "ZK": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232024950
+  },
+  "ZRO": {
+    "available": [
+      "BINANCE",
+      "BYBIT",
+      "OKX",
+      "KUCOIN",
+      "GATE"
+    ],
+    "unavailable": [],
+    "lastChecked": 1762232024964
+  }
+}
