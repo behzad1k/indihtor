@@ -52,9 +52,7 @@ export class SignalAnalyzerService {
       timeframes: {},
       combinations: {},
     };
-
     for (const tf of timeframes) {
-      this.logger.log(`Analyzing ${symbol} on ${tf}...`);
 
       const data = await this.dataFetcher.fetchData(symbol, tf, 200);
 

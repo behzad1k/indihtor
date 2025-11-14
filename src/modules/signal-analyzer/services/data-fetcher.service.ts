@@ -41,7 +41,7 @@ export class DataFetcherService {
         return null;
       }
 
-      this.logger.debug(`Successfully fetched ${data.length} candles for ${symbol} ${timeframe}`);
+      // this.logger.debug(`Successfully fetched ${data.length} candles for ${symbol} ${timeframe}`);
       return data;
     } catch (error) {
       this.logger.error(`Error fetching data for ${symbol} ${timeframe}: ${error.message}`);

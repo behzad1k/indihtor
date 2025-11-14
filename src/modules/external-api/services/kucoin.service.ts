@@ -48,8 +48,7 @@ export class KuCoinService {
         endAt: end,
       };
 
-      this.logger.debug(`Fetching KuCoin candles: ${symbolPair} ${timeframe}`);
-
+      
       const response = await firstValueFrom(
         this.httpService.get<KuCoinCandleResponse>(url, {
           params,

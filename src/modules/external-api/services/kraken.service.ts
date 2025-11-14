@@ -54,8 +54,7 @@ export class KrakenService {
         interval,
       };
 
-      this.logger.debug(`Fetching Kraken candles: ${symbolPair} ${timeframe}`);
-
+      
       const response = await firstValueFrom(
         this.httpService.get(url, {
           params,

@@ -49,8 +49,7 @@ export class BinanceService {
         params.endTime = endTime * 1000;
       }
 
-      this.logger.debug(`Fetching Binance candles: ${symbolPair} ${timeframe}`);
-
+      
       const response = await firstValueFrom(
         this.httpService.get(url, {
           params,

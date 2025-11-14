@@ -158,9 +158,6 @@ export class ExchangeAggregatorService {
     if (availableExchanges.length === 0) {
       this.logger.debug(`No known exchanges for ${options.symbol}, trying all`);
     } else {
-      this.logger.debug(
-        `${options.symbol} available on: ${availableExchanges.map(e => e.toString()).join(', ')}`
-      );
       }
 
     const exchangesToTry = availableExchanges.length > 0
@@ -184,7 +181,6 @@ export class ExchangeAggregatorService {
       }
 
       const attemptStart = Date.now();
-      this.logger.debug(`Trying ${exchange} (rotation ${i + 1}/${exchangesToTry.length})`);
       this.stats.exchangeAttempts.set(
         exchange,
         (this.stats.exchangeAttempts.get(exchange) || 0) + 1
@@ -195,8 +191,7 @@ export class ExchangeAggregatorService {
 
         const attemptDuration = Date.now() - attemptStart;
 
-        if (data && data.length >= 50) {
-          this.logger.debug(`✅ Data fetched from ${exchange}`);
+        if (data && data.length >= options.limit) {
           this.trackRequest(exchange);
           this.markAvailable(options.symbol, exchange);
           this.stats.successfulRequests++;
@@ -211,10 +206,9 @@ export class ExchangeAggregatorService {
             duration: attemptDuration,
           });
 
-          this.logAttempts(options.symbol, attempts, Date.now() - startTime);
           return data;
         } else {
-          this.logger.warn(`${exchange} returned insufficient data for ${options.symbol}`);
+          this.logger.warn(`${exchange} returned insufficient data for ${options.symbol} in tf: ${options.timeframe} length: ${data.length}/${options.limit} date: ${new Date(options.startTime * 1000)} - ${new Date(options.endTime * 1000)}`);
           attempts.push({
             exchange,
             success: false,
@@ -250,7 +244,6 @@ export class ExchangeAggregatorService {
     // All exchanges failed
     this.stats.failedRequests++;
     this.logger.error(`❌ All exchanges failed for ${options.symbol}`);
-    this.logAttempts(options.symbol, attempts, Date.now() - startTime);
 
     return null;
   }
@@ -746,26 +739,6 @@ export class ExchangeAggregatorService {
     cached.unavailable.add(exchange);
     cached.available.delete(exchange); // Remove from available if present
     cached.lastChecked = Date.now();
-  }
-
-  /**
-   * Log all attempts for debugging
-   */
-  private logAttempts(symbol: string, attempts: FetchAttempt[], totalDuration: number): void {
-    if (attempts.length === 0) return;
-
-    this.logger.debug(`\n=== Fetch Summary for ${symbol} ===`);
-    this.logger.debug(`Total duration: ${totalDuration}ms`);
-    this.logger.debug(`Attempts: ${attempts.length}`);
-
-    for (const attempt of attempts) {
-      const status = attempt.success ? '✅' : '❌';
-      const error = attempt.error ? ` - ${attempt.error}` : '';
-      this.logger.debug(
-        `  ${status} ${attempt.exchange}: ${attempt.duration}ms${error}`
-      );
-    }
-    this.logger.debug(`=====================================\n`);
   }
 
   /**

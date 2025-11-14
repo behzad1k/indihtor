@@ -61,8 +61,7 @@ export class GateService {
         params.to = endTime;
       }
 
-      this.logger.debug(`Fetching Gate.io candles: ${symbolPair} ${timeframe}`);
-
+      
       const response = await firstValueFrom(
         this.httpService.get(url, {
           params,

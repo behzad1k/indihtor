@@ -42,8 +42,7 @@ export class NobitexService {
         to,
       };
 
-      this.logger.debug(`Fetching Nobitex candles: ${symbol} ${timeframe}`);
-
+      
       const response = await firstValueFrom(
         this.httpService.get(url, {
           params,

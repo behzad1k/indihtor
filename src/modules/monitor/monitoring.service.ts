@@ -31,7 +31,7 @@ export class MonitoringService implements OnModuleInit {
 
   private async loadSymbols() {
     // Fetch from exchange API
-    this.symbols = await this.coinAnalyzer.fetchTopSymbols(100);
+    this.symbols = await this.coinAnalyzer.fetchTopSymbols(500);
     this.logger.log(`Loaded ${this.symbols.length} symbols`);
   }
 

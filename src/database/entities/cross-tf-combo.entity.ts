@@ -4,6 +4,7 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, Index } from 
 @Index(['comboSignatureHash'], { unique: true })
 @Index(['accuracy'])
 @Index(['comboSize', 'numTimeframes', 'accuracy'])
+@Index(['numTimeframes', 'accuracy'])
 export class CrossTfCombo {
   @PrimaryGeneratedColumn()
   id: number;

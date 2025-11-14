@@ -35,8 +35,7 @@ export class TabdealService {
         limit,
       };
 
-      this.logger.debug(`Fetching Tabdeal candles: ${symbol} ${timeframe}`);
-
+      
       const response = await firstValueFrom(
         this.httpService.get(url, {
           params,

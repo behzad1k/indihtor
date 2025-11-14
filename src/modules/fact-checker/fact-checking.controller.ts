@@ -4,6 +4,7 @@
  * REST API endpoints for signal validation and accuracy tracking
  */
 
+import { Public } from '@common/decorators/public.decorator';
 import {
   Controller,
   Post,
@@ -33,6 +34,7 @@ export class FactCheckingController {
    * POST /api/fact-check/bulk-signals
    * Bulk fact-check live signals with parallel processing
    */
+  @Public()
   @Post('bulk-signals')
   async bulkFactCheckLiveSignals(@Body() dto: BulkFactCheckDto) {
     try {

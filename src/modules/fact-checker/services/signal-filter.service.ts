@@ -123,6 +123,13 @@ export class SignalFilterService {
       };
     }
 
+    if (timeframe == '2h' || timeframe == '6h'){
+      return {
+        shouldCheck: false,
+        reason: 'TIMEFRAME_NOT_STANDARD'
+      }
+    }
+
     // Skip this weak signal
     return {
       shouldCheck: false,

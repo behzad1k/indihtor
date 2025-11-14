@@ -66,12 +66,13 @@ export class FactCheckingService {
   private async loadValidationWindows(): Promise<void> {
     try {
       const signals = await this.signalRepository.find({
-        select: ['signalName', 'timeframe', 'validationWindow'],
+        select: ['signalName', 'timeframe', 'initialValidationWindow', 'maxValidationWindow'],
       });
 
       for (const signal of signals) {
         const key = `${signal.signalName}:${signal.timeframe}`;
-        this.validationWindowCache.set(key, signal.validationWindow);
+        const validationWindow = (signal.maxValidationWindow + signal.initialValidationWindow) / 2
+        this.validationWindowCache.set(key, validationWindow);
       }
 
       this.logger.log(
@@ -366,13 +367,13 @@ export class FactCheckingService {
       'sfc',
       'ls.signalName = sfc.signalName AND ls.timeframe = sfc.timeframe AND ls.timestamp = sfc.detectedAt'
     )
-    .where('sfc.id IS NULL').orderBy('ls.timestamp', 'ASC');
+    .where('sfc.id IS NULL');
 
     if (symbol) {
       queryBuilder = queryBuilder.andWhere('ls.symbol = :symbol', { symbol });
     }
 
-    queryBuilder = queryBuilder.orderBy('ls.timestamp', 'DESC');
+    queryBuilder = queryBuilder.orderBy('ls.timestamp', 'ASC');
 
     if (limit) {
       queryBuilder = queryBuilder.limit(limit);
@@ -728,6 +729,7 @@ export class FactCheckingService {
     .createQueryBuilder('sfc')
     .select('DISTINCT sfc.signalName', 'signalName')
     .addSelect('sfc.timeframe', 'timeframe')
+    .orderBy('id', 'ASC')
     .getRawMany();
 
     const results = {

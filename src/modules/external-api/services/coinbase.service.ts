@@ -55,8 +55,7 @@ export class CoinbaseService {
         granularity,
       };
 
-      this.logger.debug(`Fetching Coinbase candles: ${symbolPair} ${timeframe}`);
-
+      
       const response = await firstValueFrom(
         this.httpService.get(url, {
           params,

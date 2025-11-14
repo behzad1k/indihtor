@@ -1,5 +1,6 @@
 import { typeOrmConfig } from '@config/typeorm.config';
 import { FactCheckingModule } from '@modules/fact-checker/fact-checking.module';
+import { SignalCombinationModule } from '@modules/signal-combinations/signal-combination.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -27,7 +28,8 @@ import { JwtAuthGuard } from './modules/auth/guards/jwt-auth.guard';
     MarketDataModule,
     SignalAnalyzerModule,
     ExternalApiModule,
-    FactCheckingModule
+    FactCheckingModule,
+    SignalCombinationModule
   ],
   providers: [
     {

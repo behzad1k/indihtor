@@ -1,6 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, Index } from 'typeorm';
 
 @Entity('signal_fact_checks')
+@Index(['signalName', 'timeframe'])
+@Index(['predictedCorrectly'])
+@Index(['detectedAt'])
+@Index(['signalName', 'timeframe', 'detectedAt'])
 export class SignalFactCheck {
   @PrimaryGeneratedColumn()
   id: number;

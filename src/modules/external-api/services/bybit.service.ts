@@ -63,8 +63,7 @@ export class BybitService {
         limit,
       };
 
-      this.logger.debug(`Fetching Bybit candles: ${symbolPair} ${timeframe}`);
-
+      
       const response = await firstValueFrom(
         this.httpService.get(url, {
           params,

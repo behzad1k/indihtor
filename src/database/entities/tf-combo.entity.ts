@@ -3,6 +3,8 @@ import { Entity, PrimaryGeneratedColumn, Column, Index } from 'typeorm';
 @Entity('tf_combos')
 @Index(['signalNameHash', 'timeframe'])
 @Index(['accuracy'])
+@Index(['timeframe', 'accuracy'])
+@Index(['comboSize', 'accuracy'])
 export class TfCombo {
   @PrimaryGeneratedColumn()
   id: number;

@@ -64,8 +64,7 @@ export class OKXService {
         params.before = endTime * 1000;
       }
 
-      this.logger.debug(`Fetching OKX candles: ${symbolPair} ${timeframe}`);
-
+      
       const response = await firstValueFrom(
         this.httpService.get(url, {
           params,
