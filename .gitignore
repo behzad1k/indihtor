@@ -45,3 +45,6 @@ lerna-debug.log*
 *.temp
 /tmp
 .cache
+
+openapi-spec.json
+package-lock.json
